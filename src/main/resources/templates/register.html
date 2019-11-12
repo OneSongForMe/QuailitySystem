@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/JS/vue.js"></script>
+    <script src="/JS/axios.js"></script>
+</head>
+<body>
+<div id="app">
+<form action="/login/register" method="post">
+    <div>账号<input type="text" name="account" v-model = 'account' @blur="isExist(account)"/></div>
+    <div>密码<input type="text" name="password"/></div>
+    <div>手机号<input type="text" name="mobile"/></div>
+    <div><input type="submit" value="register"/></div>
+    
+
+
+
+</form>
+</div>
+<script src="/JS/login.js"></script>
+</body>
+</html>

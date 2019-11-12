@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head> <!--th:include="console/header">-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script  src="/JS/vue.js"></script>
+    <script  src="/JS/axios.js"></script>
+</head>
+<body>
+<div id='app'>
+  <div>
+      <input type="text" v-model="keyword">
+      <input type="button" value="搜索" @click = "select(keyword)">
+  </div>
+    <div>
+        <table>
+            <tr>
+                <th>产品编号</th><th>产品名</th><th>产品原料产地</th><th>时间</th><th>评论</th>
+            </tr>
+            <tr v-for="production in productions" :key = "production.pid" v-if="isvisible">
+                <td>{{production.pid}}</td>
+                <td>{{production.name}}</td>
+                <td>{{production.material}}</td>
+                <td>{{production.date}}</td>
+                <td><a @click="getComments(production.pid)">详情</a></td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>xxx</td>
+                <td>时间xxxx--xx--xx--hh--mm--ss</td>
+            </tr>
+            <tr>
+                <td>评论内容：asdjasohoasfhoahs</td>
+            </tr>
+        </table>
+        <div v-if="commentView">
+            <table v-for = "comment in comments" >
+                <tr>
+
+                    <td>{{comment.account}}</td>
+                    <td>{{comment.date}}</td>
+                </tr>
+                <tr>
+                    <td>{{comment.comment}}</td>
+                </tr>
+
+            </table>
+            <div>
+                <input type="text" v-model = "mycomment" />
+                <input type="button" value="发布评论" @click="sendComment(1,mycomment);getComments(1)" />
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+</body>
+<script  src="/JS/index.js"></script>
+</html>

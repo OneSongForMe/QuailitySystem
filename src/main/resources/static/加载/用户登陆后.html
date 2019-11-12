@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>首页</title>
+		<style>
+			#father{
+				border: 1px solid #FFFFFF;
+				width: 1300px;
+				height: 2170px;
+				margin: auto;
+				
+			}
+			/*#logo{
+				border: 1px solid black;
+				width: 1300px;
+				height: 50px;
+			}*/
+			.top{
+				border: 1px solid #FFFFFF;
+				width: 257px;
+				height: 50px;
+				float: left;
+			
+			}
+			#top{
+				padding-top: 12px;
+				height: 38px;
+			}
+			#menu{
+				border: 1px solid #FFFFFF;
+				width: 1300px;
+				height: 50px;
+				background-color: black;
+			}
+			ul li{
+				display: inline;
+				color: white;
+			}
+			#clear{
+				clear: both;
+			}
+			
+			#product{
+				border: 1px solid #FFFFFF;
+				width: 1300px;
+				height: 558px;
+			}
+			#product_top{
+				border: 1px solid #FFFFFF;
+				width: 100%;
+				height: 45px;
+				padding-top: 8px;
+			}
+			#product_bottom{
+				border: 1px solid #FFFFFF;
+				width: 100%;
+				height: 500px;
+			}
+			#product_bottom_left{
+				border: 1px solid #FFFFFF;
+				width: 200px;
+				height: 500px;
+				float: left;
+			}
+			#product_bottom_right{
+				border: 1px solid #FFFFFF;
+				width: 1094px;
+				height: 500px;
+				float: left;
+			}
+			#big{
+				border: 1px solid #FFFFFF;
+				width: 544px;
+				height: 248px;
+				float: left;
+			}
+			.small{
+				border: 1px solid #000000;
+				width: 180px;
+				height: 248px;
+				float: left;
+				/*让里面的内容居中*/
+				text-align: center;
+			}
+			
+			#bottom{
+				text-align: center;
+			}
+			
+			a{
+				text-decoration: none;
+			}
+		</style>
+		<script>
+			
+			var user=localStorage.getItem('user');
+			
+			document.write(user)
+		</script>
+	</head>
+	<body>
+		<div id="father">
+			<!--1.logo部分-->
+			<div id="logo">
+				<div class="top">
+					<img src="img/5066.jpg" height="46px" width="100%"/>
+				</div>
+				
+				<div class="top" >
+					<img src="img/257.ico" height="46px" />
+	
+				</div>
+				<div class="top"><img src="img/logofooter.png" height="46px" /></div>
+				<div class="top" id="top">某某购物商城</div>
+				<div class="top" id="top">
+					
+
+					<a id="q">123</a>
+					<a href="../index.html">注销</a>
+					<a href="用户质量反馈界面.html">售后反馈</a>
+				
+				</div>
+				
+			</div>
+			<div id="clear">
+				
+			</div>
+			<!--2.导航栏部分-->
+			<div id="menu">
+				<ul>
+					<a href="#"><li style="font-size: 20px;">首页</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#"><li>手机数码</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#"><li>家用电器</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#"><li>鞋靴箱包</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#"><li>孕婴保健</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+					<a href="#"><li>奢侈品</li></a>
+				</ul>
+			</div>
+			<!--3.轮播图部分-->
+			
+			<!--4.最新商品-->
+			<div id="product">
+				<div id="product_top">
+					&nbsp;&nbsp;&nbsp;
+					<span style="font-size: 25px;padding-top: 8px;">最新商品</span>&nbsp;&nbsp;&nbsp;
+					
+				</div>
+				<div id="product_bottom">
+					<div id="product_bottom_left">
+						<img src="img/psd27516.jpg" width="100%" height="100%"/>
+					</div>
+					<div id="product_bottom_right">
+						<div id="big">
+							<a href="#"><img src="img/t01bd13399aac6bde19.jpg" width="100%" height="100%"/></a>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+							
+							
+							
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--5.广告图片-->
+			
+			<!--6.热门商品-->
+			<div id="product">
+				<div id="product_top">
+					&nbsp;&nbsp;&nbsp;
+					<span style="font-size: 25px;padding-top: 8px;">热门商品</span>&nbsp;&nbsp;&nbsp;
+				
+				</div>
+				<div id="product_bottom">
+					<div id="product_bottom_left">
+						<img src="img/psd27539.jpg" width="100%" height="100%"/>
+					</div>
+					<div id="product_bottom_right">
+						<div id="big">
+							<a href="#"><img src="img/t01eea5ea853f12f0ab.jpg" width="100%" height="100%"/></a>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+						<div class="small">
+							<img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+							<a href="商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+							<p style="color: red;">¥399</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--7.广告图片-->
+			<div id="">
+				<img src="img/250.ico"/>
+			</div>
+			<!--8.友情链接和版权信息-->
+			<div id="bottom">
+				<a href="#">关于我们</a>
+				<a href="#">联系我们</a>
+				<a href="#">招贤纳士</a>
+				<a href="#">法律声明</a>
+				<a href="#">友情链接</a>
+				<a href="#">支付方式</a>
+				<a href="#">配送方式</a>
+				<a href="#">服务声明</a>
+				<a href="#">广告声明</a>
+				
+					
+				
+			</div>
+		</div>
+	</body>
+</html>

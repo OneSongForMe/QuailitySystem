@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/JS/vue.js"></script>
+    <script src="/JS/axios.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <a @click ="linkInsert">新增</a>
+    <a @click ="linkUpdate">修改</a>
+    <!--<div>-->
+        <!--<table>-->
+            <!--<tr>-->
+                <!--<td><router-link to="/insert">新增</router-link></td>-->
+
+            <!--</tr>-->
+        <!--</table>-->
+    <!--</div>-->
+    <table>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>手机号</th>
+            <th>编辑</th>
+            <th>删除</th>
+        </tr>
+        <tr v-for="customer in customers">
+            <td>{{customer.cid}}</td>
+            <td>{{customer.account}}</td>
+            <td>{{customer.mobile}}</td>
+            <td  @click = "gotoupdate(customer)" ><router-link to="/d">修改</router-link></td>
+            <td  @click = "deleteByCid(customer.cid)" ><a>删除</a></td>
+        </tr>
+    </table>
+    <!--<updatecustomer :parentupdate_customer="update_customer" @update="update" @load = "loadCustomer"></updatecustomer>-->
+    <!--<div>-->
+        <!--<insertcustomer @insert = "insert" @load="loadCustomer"></insertcustomer>-->
+    <!--</div>-->
+        <router-view @insert="insert" @update="update" :parentupdate_customer="update_customer" ></router-view>
+</div>
+<template id="updatecustomer">
+    <div>
+        <h4>修改记录</h4>
+        <table>
+            <tr>
+                <th>用户名</th>
+                <td>{{parentupdate_customer.account}}</td>
+            </tr>
+            <tr>
+                <th>密码</th>
+                <td><input v-model = "parentupdate_customer.password" ></td>
+            </tr>
+            <tr>
+                <th>预留手机号</th>
+                <td><input v-model = "parentupdate_customer.mobile" ></td>
+            </tr>
+            <tr>
+                <th>注册时间</th>
+                <td>{{parentupdate_customer.date}}</td>
+            </tr>
+            <tr>
+                <td><a @click = "update_customer(parentupdate_customer)">确认保存</a></td>
+            </tr>
+        </table>
+    </div>
+</template>
+
+<template id="insertcustomer">
+    <div>
+        <h4>添加记录</h4>
+        <table>
+            <tr>
+                <th>用户名</th>
+                <td><input v-model = "customer.account" ></td>
+            </tr>
+            <tr>
+                <th>密码</th>
+                <td><input v-model = "customer.password" ></td>
+            </tr>
+            <tr>
+                <th>预留手机号</th>
+                <td><input v-model = "customer.mobile" ></td>
+            </tr>
+            <tr>
+                <td><a @click = "insert_customer(customer)">确认保存</a></td>
+            </tr>
+        </table>
+    </div>
+</template>
+
+</body>
+<script src="/JS/manager_customer.js"></script>
+</html>

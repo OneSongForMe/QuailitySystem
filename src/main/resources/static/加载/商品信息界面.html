@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script>
+function loadXMLDoc()
+{
+	var xmlhttp;
+	if (window.XMLHttpRequest)
+	{
+		//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码
+		xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{
+		// IE6, IE5 浏览器执行代码
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("GET", "new_file.txt",true);
+	xmlhttp.send();
+}
+function ba(){
+	window.location.href="商品信息界面.html"
+}
+</script>
+</head>
+<body>
+<a href="用户登陆后.html">返回</a>
+<div id="myDiv"><h2>查看货物具体信息</h2></div>
+<button type="button" onclick="loadXMLDoc()">获取</button>
+<button type="button" onclick="ba()">刷新</button>
+
+</body>
+</html>

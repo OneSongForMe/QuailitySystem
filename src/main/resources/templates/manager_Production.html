@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/JS/vue.js"></script>
+    <script src="/JS/axios.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <a @click ="linkInsert">新增</a>
+    <a @click ="linkUpdate">修改</a>
+    <div>
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>产品名称</th>
+                <th>材料产地</th>
+                <th>更新时间</th>
+                <th>编辑</th>
+                <th>删除</th>
+            </tr>
+            <tr v-for="production in productions" :key="production.pid">
+                <td>{{production.pid}}</td>
+                <td>{{production.name}}</td>
+                <td>{{production.material}}</td>
+                <td>{{production.date}}</td>
+                <td  @click = "gotoupdate(production)" >修改</td>
+                <td  @click = "deleteByPid(production.pid)" ><a>删除</a></td>
+            </tr>
+        </table>
+    </div>
+    <router-view @insert="insert" @update="update" :parentupdate_production="update_production" ></router-view>
+</div>
+
+<template id="updateproduction">
+    <div>
+        <h4>修改记录</h4>
+        <table>
+            <tr>
+                <th>产品名称</th>
+                <td>{{parentupdate_production.name}}</td>
+            </tr>
+            <tr>
+                <th>材料原产地</th>
+                <td><input v-model = "parentupdate_production.material" ></td>
+            </tr>
+            <tr>
+                <th>更新时间</th>
+                <td>{{parentupdate_production.date}}</td>
+            </tr>
+            <tr>
+                <td><a @click = "update_production(parentupdate_production)">确认保存</a></td>
+            </tr>
+        </table>
+    </div>
+</template>
+
+<template id="insertproduction">
+    <div>
+        <h4>添加记录</h4>
+        <table>
+            <tr>
+                <th>产品名称</th>
+                <td><input v-model = "production.name" ></td>
+            </tr>
+            <tr>
+                <th>材料原产地</th>
+                <td><input v-model = "production.material" ></td>
+            </tr>
+            <tr>
+                <td><a @click = "insert_production(production)">确认保存</a></td>
+            </tr>
+        </table>
+    </div>
+</template>
+<script src="/JS/manager_production.js"></script>
+</body>
+</html>

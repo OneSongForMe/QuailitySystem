@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/JS/vue.js"></script>
+    <script src="/JS/axios.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <table>
+            <tr>
+                <th>编号</th>
+                <th>产品编号</th>
+                <th>用户名</th>
+                <th>评论</th>
+                <th>是否置顶</th>
+                <th>是否为客户</th>
+                <th>发布时间</th>
+                <th>编辑</th>
+                <th>删除</th>
+            </tr>
+            <tr v-for="comment in comments" :key="comment.coid">
+                <th>{{comment.coid}}</th>
+                <th>{{comment.pid}}</th>
+                <th>{{comment.account}}</th>
+                <th>{{comment.comment}}</th>
+                <th>{{comment.istop}}</th>
+                <th>{{comment.iscustomer}}</th>
+                <th>{{comment.date}}</th>
+                <th><a @click="linkUpdate(comment)">编辑</a></th>
+                <th><a @click="deleteComment(comment.coid)">删除</a></th>
+            </tr>
+        </table>
+        <div><a @click="linkInsert()">我要说</a></div>
+    </div>
+    <router-view :parentcomment="toupdate" @insert="insert" @update="update"></router-view>
+</div>
+
+<template id="insert">
+    <div>
+        <textarea v-model="comment.comment"></textarea>
+        <input type="button" value="发表评论" @click="insert(comment)">
+    </div>
+</template>
+
+<template id="update">
+    <div>
+        <h5>修改记录</h5>
+        <table>
+            <tr><th>编号</th><td>{{parentcomment.coid}}</td></tr>
+            <tr><th>产品编号</th><td>{{parentcomment.pid}}</td></tr>
+            <tr><th>用户名</th><td>{{parentcomment.account}}</td></tr>
+            <tr><th>评论</th><td>{{parentcomment.comment}}</td></tr>
+            <tr> <th>是否置顶</th><td><input type="text" v-model="parentcomment.istop"></td></tr>
+            <tr><th>是否为客户</th><td>{{parentcomment.iscustomer}}</td></tr>
+            <tr><td><a @click="update(parentcomment)">保存修改</a></td></tr>
+        </table>
+    </div>
+</template>
+
+<script src="/JS/manager_comment.js"></script>
+</body>
+</html>

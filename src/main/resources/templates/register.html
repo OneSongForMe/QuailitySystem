@@ -11,7 +11,10 @@
 <form action="/login/register" method="post">
     <div>账号<input type="text" name="account" v-model = 'account' @blur="isExist(account)"/></div>
     <div>密码<input type="text" name="password"/></div>
+    <div>确认密码<input type="text" /></div>
+    <div>邮箱<input type="text" name="email"/></div>
     <div>手机号<input type="text" name="mobile"/></div>
+    <div>地址<input type="text" name="address"/></div>
     <div><input type="submit" value="register"/></div>
     
 

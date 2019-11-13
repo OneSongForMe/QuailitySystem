@@ -8,9 +8,12 @@ public class Comment implements Serializable {
     private int pid;
     private String account;
     private String comment;
-    private int istop;
-    private int iscustomer;
+    private String picture;
     private Date date;
+
+
+    public Comment() {
+    }
 
     public int getCoid() {
         return coid;
@@ -44,20 +47,12 @@ public class Comment implements Serializable {
         this.comment = comment;
     }
 
-    public int getIstop() {
-        return istop;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setIstop(int istop) {
-        this.istop = istop;
-    }
-
-    public int getIscustomer() {
-        return iscustomer;
-    }
-
-    public void setIscustomer(int iscustomer) {
-        this.iscustomer = iscustomer;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public Date getDate() {
@@ -75,8 +70,7 @@ public class Comment implements Serializable {
                 ", pid=" + pid +
                 ", account='" + account + '\'' +
                 ", comment='" + comment + '\'' +
-                ", istop=" + istop +
-                ", iscustomer=" + iscustomer +
+                ", picture='" + picture + '\'' +
                 ", date=" + date +
                 '}';
     }

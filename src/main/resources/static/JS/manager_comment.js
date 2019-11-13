@@ -3,7 +3,7 @@ var insertcomponent={
     template:'#insert',
     data:function () {
         return{
-            comment:{pid:1,account:'zs',comment:'',istop:0,iscustomer:0}
+            comment:{pid:1,account:'zs',comment:'',picture:''}
         }
     },
     methods:{

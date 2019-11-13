@@ -54,8 +54,7 @@
             <tr><th>产品编号</th><td>{{parentcomment.pid}}</td></tr>
             <tr><th>用户名</th><td>{{parentcomment.account}}</td></tr>
             <tr><th>评论</th><td>{{parentcomment.comment}}</td></tr>
-            <tr> <th>是否置顶</th><td><input type="text" v-model="parentcomment.istop"></td></tr>
-            <tr><th>是否为客户</th><td>{{parentcomment.iscustomer}}</td></tr>
+            <tr><th>分享图片</th><td>{{parentcomment.picture}}</td></tr>
             <tr><td><a @click="update(parentcomment)">保存修改</a></td></tr>
         </table>
     </div>

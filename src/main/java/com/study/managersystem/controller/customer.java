@@ -27,6 +27,11 @@ public class customer {
 
     }
 
+    @RequestMapping("cc")
+    public  String login2(){
+        return "log";
+    }
+
     @RequestMapping("index")
     public  String index(){
         return "manager_Customer";
@@ -43,10 +48,10 @@ public class customer {
     @RequestMapping("update")
     @ResponseBody
     public String update(@RequestBody Customer customer){
-        System.out.println(customer);
-        String result = null;
-        result = customerService.update(customer);
-        return result;
+            System.out.println(customer);
+            String result = null;
+            result = customerService.update(customer);
+            return result;
     }
 
     @RequestMapping("insert")

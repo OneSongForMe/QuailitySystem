@@ -32,7 +32,7 @@ public class CommentServiceImpl {
     public String insertByProduction(Comment comment){
         int index = -1;
         String result = "fail";
-        index = iCommentDao.insertByProduction(comment.getPid(),comment.getAccount(),comment.getComment(),comment.getIstop(),comment.getIscustomer(),comment.getDate());
+        index = iCommentDao.insertByProduction(comment.getPid(),comment.getAccount(),comment.getComment(),comment.getPicture(),comment.getDate());
         if(index>0){
             result = "success";
         }
@@ -42,7 +42,7 @@ public class CommentServiceImpl {
     public String update(Comment comment){
         String result = null;
         int index = iCommentDao.update(comment.getCoid(),comment.getPid(),
-                comment.getAccount(),comment.getComment(),comment.getIstop(),comment.getIscustomer(),comment.getDate());
+                comment.getAccount(),comment.getComment(),comment.getPicture(),comment.getDate());
         if(index > 0){
             result = "success";
         }

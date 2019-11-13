@@ -61,8 +61,7 @@ public class comment {
         comment.setPid(Integer.parseInt(pid));
         comment.setAccount("zs");
         comment.setComment(mycomment);
-        comment.setIscustomer(0);
-        comment.setIstop(0);
+        //有的加图片
         comment.setDate(new Date());
         String result = commentService.insertByProduction(comment);
         return result;

@@ -1,6 +1,5 @@
 package com.study.managersystem.controller;
 
-import com.study.managersystem.dao.ICommentDao;
 import com.study.managersystem.entity.Comment;
 import com.study.managersystem.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -92,6 +94,28 @@ public class comment {
 
         String result = commentService.delete(coid);
         return result;
+    }
+
+
+
+
+    @RequestMapping("upload")
+    @ResponseBody
+    public String upLoad( MultipartFile file){
+        String parentPath = "src/main/resources/static/upload/";
+        if(file.isEmpty()){
+            System.out.println("无上传文件");
+        }else{
+            System.out.println("存在上传文件");
+        }
+        File f = new File(parentPath+file.getOriginalFilename());
+        try {
+            file.transferTo(f);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return f.getAbsolutePath();
     }
 
 

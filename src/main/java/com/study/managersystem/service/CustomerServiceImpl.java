@@ -52,13 +52,14 @@ public class CustomerServiceImpl {
 
         Customer anotherCustomer = iCustomerDao.isExist(account);
         if(customer!=null){
-            index = iCustomerDao.add(account,password,mobile,date);
+            index = iCustomerDao.add(account,password,mobile,customer.getAddress(),customer.getEmail(),date);
             if(index > 0){
                 return true;
             }
         }
         return false;
     }
+
 
     public String update(Customer customer){
         String result = null;
@@ -83,12 +84,13 @@ public class CustomerServiceImpl {
 
     public String insert(Customer customer){
         String result = null;
-        int index = iCustomerDao.add(customer.getAccount(),customer.getPassword(),customer.getMobile(),customer.getDate());
+        int index = iCustomerDao.add(customer.getAccount(),customer.getPassword(),customer.getMobile(),customer.getAddress(),customer.getEmail(),customer.getDate());
         if(index > 0){
             result = "success";
         }
         return result;
     }
+
 
     public List<Customer> selectAll(){
         List<Customer> customers = iCustomerDao.findAll();

@@ -44,20 +44,21 @@ public class login {
 
 
     @RequestMapping("register")
-    @ResponseBody
-    public String register(String account,String password,String mobile){
+    public String register(String account,String password,String email,String phone,String address){
 
         Customer customer = new Customer();
         customer.setAccount(account);
         customer.setPassword(password);
-        customer.setMobile(mobile);
+        customer.setMobile(phone);
+        customer.setAddress(address);
+        customer.setEmail(email);
         customer.setDate(new Date());
 
         boolean register = customerService.register(customer);
         if(register){
-            return "success";
+            return "loginC";
         }
-        return "fail";
+        return "registerC";
     }
 
 

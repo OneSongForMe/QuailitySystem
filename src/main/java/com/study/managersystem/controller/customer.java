@@ -10,4 +10,5 @@ public class customer {
 
     @RequestMapping("registerC")
     public String reg(){return "registerC";}
+
 }

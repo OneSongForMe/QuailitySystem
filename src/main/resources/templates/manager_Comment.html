@@ -37,11 +37,17 @@
         <div><a @click="linkInsert()">我要说</a></div>
     </div>
     <router-view :parentcomment="toupdate" @insert="insert" @update="update"></router-view>
+    <form action="/comment/upload" method="post" enctype="multipart/form-data">
+
+        <input name="file" type="file" />
+        <input type="submit" value="上传文件"/>
+    </form>
 </div>
 
 <template id="insert">
     <div>
         <textarea v-model="comment.comment"></textarea>
+
         <input type="button" value="发表评论" @click="insert(comment)">
     </div>
 </template>

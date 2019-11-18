@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="加载/css/manager.css" />
+		<script type="text/javascript"></script>
+    	<script type="text/javascript" src="加载/js/vue.min.js" ></script>
+    	<script type="text/javascript" src="加载/js/axios.js" ></script>
+    	<script type="text/javascript" src="加载/js/echarts.js"></script>
+    	<script type="text/javascript" src="加载/js/jquery.min.js"></script>
+	</head>
+<body>
+		<div id="app">
+			<div id="top">
+				<div id="top1">
+					<h1>个人管理</h1>
+				</div>
+				<div id="top2">
+					<div id="top3" title="退出">
+					<a href="adexit" onmouseout="showt()"><img style="width: 60px;height: 60px; margin:6px 0px;" src="加载/img/ad01.jpg"></a>
+					</div>
+					<img title="系统管理员" src="加载/img/ad03.png" style="width: 65px; height: 80%; margin: 8px 0px; float: left;">
+					<span id="top4s"></span>
+					<div id="clock" title="当前时间">
+   					<p class="date">{{ date }}{{ time }}</p>
+					</div>
+				</div>
+			</div>
+			<div id="left">
+				<button id="leftbtn1" onclick="zhankai1()" onmouseover="show1()" onmouseleave="hide1()">个人信息查看</button>
+				<button id="leftbtn2" onclick="zhankai2()" onmouseover="show2()" onmouseleave="hide2()">在售物品信息</button>
+				<div id="equp" style="display: none;">
+					<button onclick="eq1()" v-on:click="showgoods" >商品查看</button>
+					<button onclick="eq2()" >商品订单</button>
+					<button onclick="eq3()" >商品物流</button>
+				</div>
+				<button id="leftbtn3" onclick="zhankai3()" onmouseover="show3()" onmouseleave="hide3()">订单及货物</button>
+				<div id="item" style="display: none;">
+            	<button onclick="item1()" >订单查看及修改</button>
+        		</div>
+        		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showuserdata" onmouseleave="hide4()">已购商品问题反馈</button>
+				
+        		<button id="leftbtn5" onclick="zhankai5()"  onmouseover="show5()" onmouseleave="hide5()">物料使用数据分析</button>
+        		<div id="anydata" style="display: none">
+            	<button onclick="useanalys1()">种类相关分析</button>
+            	<button onclick="useanalys2()">人员相关分析</button>
+            	<button onclick="useanalys3()">时间相关分析</button>
+        	</div>
+        	<!-- <button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" onmouseleave="hide4()">查看人员使用日志</button>
+				<div id="data"style="display: none;">
+					<button onclick="data1()" >本管理员</button>
+            		<button onclick="data2()" >用户</button>
+            		
+				</div> -->
+				
+			</div>
+			<div id="main">
+				
+				
+
+			<div id="mainbody">
+        <div id="users2"style="display: none;">
+        <form action="adeditself" method="post">
+        <table class="tab2">
+        <tr>
+        <td>姓名</td>
+        <td><input name="adname" readonly="readonly" v-model="mine.adname"></td>
+        </tr>
+        <tr>
+        <td>密码</td>
+        <td> <input name="password" v-model="mine.password"></td>
+        </tr>
+        <tr>
+        <td>联系方式</td>
+        <td><input name="number" v-model="mine.number"></td>
+        </tr>
+        <tr>
+         <td>邮箱</td>
+          <td><input name="email" v-model="mine.email"></td>
+        </tr>
+        </table>
+        <button type="submit">修改</button>
+        </form>
+        </div>
+        <div id="eq1"style="display: none;">
+          	类型<input type="text" list="itemlist" v-model="keywords1"> 
+          	物料编号<input type="text" v-model="keywords2"> 
+          	物料名称<input type="text" v-model="keywords3">
+        		<datalist id="itemlist">
+    			<option>布料</option>
+    			<option>包装盒</option>
+    			<option>胶料</option>
+    			<option>线头</option>
+				</datalist>
+				
+				<table class="tab3">
+				<tr><td>物料种类</td><td>物料名称</td><td>物料编号</td><td>仓库中的数量</td></tr>
+				<!-- <tr v-for="item in goods"> -->
+				
+				<tr  v-for="item in lookfor(keywords1,keywords2,keywords3)">
+				<td>{{item.type}}</td>
+				<td>{{item.godsname}}</td>
+				<td>{{item.goodsid}}</td>
+				<td>{{item.shuliang}}</td>
+				</tr>
+				</table>
+        </div>
+        <div id="eq2"style="display: none;">
+           <table class="tab4">
+           <tr><td>物料类别</td><td><input list="itemlist" id="gtype"></td></tr>
+           <tr><td>物料名称</td><td><input id="gname"></td></tr>
+           <tr><td>物料编号</td><td><input id="gid"></td></tr>
+           <tr><td>货源地</td><td><input id="gsource"></td></tr>
+           <tr><td>购入日期</td><td><input id="gdata"></td></tr>
+           <tr><td>物料数量</td><td><input id="gnumber"></td></tr>
+           <tr><td>送货员</td><td><input id="gsender"></td></tr>
+           </table>
+           <button v-on:click="buy">已验视提交</button>
+           <button type="reset">重置</button>
+           <h3>购买记录</h3>
+           <table class="tab4-1">
+           <tr><td>物料类别</td><td>名称</td><td>编号</td><td>货源地</td><td>购入日期</td><td>购买数量</td><td>送货员</td><td>验收人员</td></tr>
+           <tr v-for="item in buydata">
+           <td>{{item.type}}</td>
+           <td>{{item.goodsname}}</td>
+           <td>{{item.goodsid}}</td>
+           <td>{{item.source}}</td>
+           <td>{{item.indate}}</td>
+           <td>{{item.number}}</td>
+           <td>{{item.sendmember}}</td>
+           <td>{{item.checkmember}}</td>
+           </tr>
+           </table>
+        </div>
+        <div id="eq3"style="display: none;">
+           <table class="tab5">
+           <tr><td>物料类别</td><td><input list="itemlist" id="btype"></td></tr>
+           <tr><td>物料名称</td><td><input id="bname"></td></tr>
+           <tr><td>物料编号</td><td><input id="bid"></td></tr>
+           <tr><td>退货时间</td><td><input id="bdata"></td></tr>
+           <tr><td>退货数量</td><td><input id="bnumber"></td></tr>
+           </table>
+           <button v-on:click="backg">退货提交</button>
+           <h4>退货记录</h4>
+           <table class="tab6">
+           <tr><td>物料类别</td><td>物料名称</td><td>物料编号</td><td>操作人员</td><td>退货时间</td><td>退货数量</td></tr>
+           <tr v-for="item in backdata">
+           <td>{{item.type}}</td>
+           <td>{{item.goodsname}}</td>
+           <td>{{item.goodsid}}</td>
+           <td>{{item.backmember}}</td>
+           <td>{{item.backdata}}</td>
+           <td>{{item.number}}</td>
+           </tr>
+           </table>
+        </div>
+        <div id="item1"style="display: none;">
+           <table class="tab7" >
+           <tr><td>客户名</td><td><input id="oname"></td></tr>
+           <tr><td>下单日期</td><td><input id="odata"></td></tr>
+           <tr><td>下单数量</td><td><input id="onumber"></td></tr>
+           <tr><td>客户地</td><td><input id="oplace"></td></tr>
+           </table>
+           <button v-on:click="addo" >增加订单</button>
+           <button v-on:click="forest" onclick="showt2()">预测物料</button>
+           <table id="t1">
+           <tr><td>客户名</td><td>下单日期</td><td>下单数量</td><td>客户地</td></tr>
+           <tr v-for="item in odata">
+           <td>{{item.ordername}}</td>
+           <td>{{item.orderdate}}</td>
+           <td>{{item.ordernumber}}</td>
+           <td>{{item.orderplace}}</td>
+           </tr>
+           </table>
+           <table id="t2" style="display: none">
+           <tr><td>物料类型</td><td>物料名称</td><td>物料数量</td></tr>
+           <tr v-for="item in forsee">
+           <td>{{item.type}}</td>
+           <td>{{item.name}}</td>
+           <td>{{item.number}}</td>
+           </tr>
+           </table>
+        </div>
+        <div id="data1"style="display: none;">
+            7
+        </div>
+        <div id="data2"style="display: none;">
+            8
+        </div>
+        <div id="analys" style="width: 600px;height:400px;display: none">
+           输入关键字<input type="text" id="key">
+           <div id="ana" style="width: 100%;height: 100%" >
+           
+           </div>
+        </div>
+        <div id="memberusedata" style="display: none">
+        <table>
+        <tr><td>物料类型</td><td>使用人员</td><td>物料名称</td><td>物料编号</td><td>使用时间</td><td>使用量</td><td>删除记录</td></tr>
+        <tr v-for="item in userdata">
+        <td>{{item.type}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.goodsname}}</td>
+        <td>{{item.goodsid}}</td>
+        <td>{{item.usedata}}</td>
+        <td>{{item.usernumber}}</td>
+        <td><button v-on:click="dusedata(item)">删除</button></td>
+        </tr>
+        </table>
+        <a href="down"><button>输出使用记录excel表格</button></a>
+        </div>
+    </div>
+			</div>
+		</div>
+		<script type="text/javascript" src="加载/js/admin2.js" ></script>
+		<script type="text/javascript" src="加载/js/admin1.js" ></script>
+
+		
+	</body>
+</html>

@@ -92,6 +92,7 @@
             text-decoration: none;
         }
     </style>
+    <script src="加载/js/jquery.min.js"></script>
 </head>
 <body>
 <div id="father">
@@ -107,7 +108,10 @@
         </div>
         <div class="top"><img src="加载/img/logofooter.png" height="46px" /></div>
         <div class="top" >某某购物商城</div>
-        <div class="top" >
+        <div id="ss1" style="display: none"> 欢迎，<span id="name"></span>&nbsp;&nbsp;&nbsp;
+            <a href="oneself">个人管理</a>&nbsp;&nbsp;&nbsp;<a href="/offLine">注销</a>
+        </div>
+        <div id="ss2" class="top"  >
             <a href="loginC">用户登录</a>
             <a href="registerC">用户注册</a>
             <a href="加载/管理员登录界面.html">管理员请登录</a>
@@ -279,4 +283,27 @@
 
 </div>
 </body>
+<script>
+    $($.ajax({
+        type:"get",// get或者post
+        url:"loginer",// 请求的url地址
+        dataType:"text",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+        success:function(data){ // 成功拿到结果放到这个函数 data就是拿到的结果
+            console.log("成功拿到结果放到这个函数");
+            if(data!=null&&data!==""){
+                console.log(data);
+                document.getElementById("ss1").style.display="block";
+                document.getElementById("ss2").style.display="none";
+                document.getElementById("name").innerText=data;
+            }
+        },
+        error:function(){//失败的函数
+            console.log("失败的函数")
+        },
+        complete:function(){//不管成功还是失败
+            console.log("不管成功还是失败")
+        }
+    }));
+
+</script>
 </html>

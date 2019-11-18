@@ -34,7 +34,7 @@ public class CustomerServiceImpl {
 
         Customer anotherCustomer = iCustomerDao.isExist(account);
 
-        if(customer!=null){
+        if(customer!=null&&anotherCustomer!=null){
             if (password.equals(anotherCustomer.getPassword())){
                 return true;
             }

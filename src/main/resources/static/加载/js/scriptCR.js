@@ -62,7 +62,7 @@ $('.reg_mobile').blur(function(){
 });
 
 $('.reg_address').blur(function(){
-  if ($(".reg_address").val()!=null){
+  if ($(".reg_address").val()!=""){
     $('.address_hint').html("✔").css("color","green");
     address= true;
   }else {
@@ -84,7 +84,6 @@ $('.reg_address').blur(function(){
 // });
 function check(){
   if(user_Boolean && password_Boolea && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean &&address== true){
-    alert("注册成功");
     return true;
   }else {
     alert("请完善信息");

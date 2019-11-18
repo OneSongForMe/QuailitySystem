@@ -4,7 +4,6 @@ var password_Boolean = false;
 var varconfirm_Boolean = false;
 var emaile_Boolean = false;
 var Mobile_Boolean = false;
-var address=false;
 $('.reg_user').blur(function(){
   if ((/^[a-z0-9_-]{4,8}$/).test($(".reg_user").val())){
     $('.user_hint').html("✔").css("color","green");
@@ -61,34 +60,12 @@ $('.reg_mobile').blur(function(){
   }
 });
 
-$('.reg_address').blur(function(){
-  if ($(".reg_address").val()!=null){
-    $('.address_hint').html("✔").css("color","green");
-    address= true;
-  }else {
-    $('.address_hint').html("×").css("color","red");
-    address = false;
-  }
-});
 
-// // click
-// $('.red_button').click(function(){
-//   if(user_Boolean && password_Boolea && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
-//     alert("注册成功");
-//     return true;
-//   }else {
-//     alert("请完善信息");
-//     return false;
-//
-//   }
-// });
-function check(){
-  if(user_Boolean && password_Boolea && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean &&address== true){
+// click
+$('.red_button').click(function(){
+  if(user_Boolean && password_Boolea && varconfirm_Boolean && emaile_Boolean && Mobile_Boolean == true){
     alert("注册成功");
-    return true;
   }else {
     alert("请完善信息");
-    return false;
-
   }
-}
+});

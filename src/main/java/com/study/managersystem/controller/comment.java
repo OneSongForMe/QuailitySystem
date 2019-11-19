@@ -83,6 +83,7 @@ public class comment{
     public String insert(Comment comment, HttpSession httpSession, MultipartFile multipartFile){
 
         comment.setAccount(httpSession.getAttribute("loginer").toString());
+        System.out.println(comment);
         String parentPath = "D:/Picture/";
         String path = null;
         File dir = new File(parentPath);

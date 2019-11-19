@@ -34,15 +34,15 @@
 				<button id="leftbtn1" onclick="zhankai1()" onmouseover="show1()" v-on:click="lookone()" onmouseleave="hide1()">个人信息查看</button>
 				<button id="leftbtn2" style="display: none;" onclick="zhankai2()" onmouseover="show2()" onmouseleave="hide2()">在售物品信息</button>
 				<div id="equp" style="display: none;">
-					<button onclick="eq1()" v-on:click="showgoods()">商品查看录入</button>
-					<button onclick="eq2()" >商品已售订单</button>
-					<button onclick="eq3()" >商品发货物流</button>
+					<button onclick="eq1()" v-on:click="showgoods()">在售商品查看</button>
+					<button onclick="eq2()" v-on:click="showbuy()">商品已售订单</button>
+					<button onclick="eq3()" >增加在售商品</button>
 				</div>
 				<button id="leftbtn3" onclick="zhankai3()" onmouseover="show3()" onmouseleave="hide3()">订单及货物</button>
 				<div id="item" style="display: none;">
-            	<button onclick="item1()" >订单查看及确认</button>
+            	<button onclick="item1()" v-on:click="lookdata()">订单查看及确认</button>
         		</div>
-        		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showuserdata" onmouseleave="hide4()">商品问题反馈</button>
+        		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showcomment()" onmouseleave="hide4()">商品问题反馈</button>
 
 				
         		<button id="leftbtn5" onclick="zhankai5()"  onmouseover="show5()" onmouseleave="hide5()">物料使用数据分析</button>
@@ -106,77 +106,28 @@
         </div>
         <div id="eq2"style="display: none;">
            <table class="tab4">
-           <tr><td>物料类别</td><td><input  id="gtype"></td></tr>
-           <tr><td>物料名称</td><td><input id="gname"></td></tr>
-           <tr><td>物料编号</td><td><input id="gid"></td></tr>
-           <tr><td>货源地</td><td><input id="gsource"></td></tr>
-           <tr><td>购入日期</td><td><input id="gdata"></td></tr>
-           <tr><td>物料数量</td><td><input id="gnumber"></td></tr>
-           <tr><td>送货员</td><td><input id="gsender"></td></tr>
-           </table>
-           <button v-on:click="buy">已验视提交</button>
-           <button type="reset">重置</button>
-           <h3>购买记录</h3>
-           <table class="tab4-1">
-           <tr><td>物料类别</td><td>名称</td><td>编号</td><td>货源地</td><td>购入日期</td><td>购买数量</td><td>送货员</td><td>验收人员</td></tr>
-           <tr v-for="item in buydata">
-           <td>{{item.type}}</td>
-           <td>{{item.goodsname}}</td>
-           <td>{{item.goodsid}}</td>
-           <td>{{item.source}}</td>
-           <td>{{item.indate}}</td>
-           <td>{{item.number}}</td>
-           <td>{{item.sendmember}}</td>
-           <td>{{item.checkmember}}</td>
-           </tr>
+               <tr><td>商品名称</td><td>买家</td><td>交易日期</td></tr>
+               <tr v-for="item in buydata">
+                   <td>{{item.production}}</td>
+                   <td>{{item.customer}}</td>
+                   <td>{{item.date}}</td>
+               </tr>
            </table>
         </div>
         <div id="eq3"style="display: none;">
            <table class="tab5">
-           <tr><td>物料类别</td><td><input  id="btype"></td></tr>
-           <tr><td>物料名称</td><td><input id="bname"></td></tr>
-           <tr><td>物料编号</td><td><input id="bid"></td></tr>
-           <tr><td>退货时间</td><td><input id="bdata"></td></tr>
-           <tr><td>退货数量</td><td><input id="bnumber"></td></tr>
+           <tr><td>商品名称</td><td><input id="gname"></td></tr>
+           <tr><td>商品来源</td><td><input id="gsource"></td></tr>
            </table>
-           <button v-on:click="backg">退货提交</button>
-           <h4>退货记录</h4>
-           <table class="tab6">
-           <tr><td>物料类别</td><td>物料名称</td><td>物料编号</td><td>操作人员</td><td>退货时间</td><td>退货数量</td></tr>
-           <tr v-for="item in backdata">
-           <td>{{item.type}}</td>
-           <td>{{item.goodsname}}</td>
-           <td>{{item.goodsid}}</td>
-           <td>{{item.backmember}}</td>
-           <td>{{item.backdata}}</td>
-           <td>{{item.number}}</td>
-           </tr>
-           </table>
+           <button v-on:click="backg()">增加到我的商店</button>
         </div>
         <div id="item1"style="display: none;">
-           <table class="tab7" >
-           <tr><td>客户名</td><td><input id="oname"></td></tr>
-           <tr><td>下单日期</td><td><input id="odata"></td></tr>
-           <tr><td>下单数量</td><td><input id="onumber"></td></tr>
-           <tr><td>客户地</td><td><input id="oplace"></td></tr>
-           </table>
-           <button v-on:click="addo" >增加订单</button>
-           <button v-on:click="forest" onclick="showt2()">预测物料</button>
            <table id="t1">
-           <tr><td>客户名</td><td>下单日期</td><td>下单数量</td><td>客户地</td></tr>
-           <tr v-for="item in odata">
-           <td>{{item.ordername}}</td>
-           <td>{{item.orderdate}}</td>
-           <td>{{item.ordernumber}}</td>
-           <td>{{item.orderplace}}</td>
-           </tr>
-           </table>
-           <table id="t2" style="display: none">
-           <tr><td>物料类型</td><td>物料名称</td><td>物料数量</td></tr>
-           <tr v-for="item in forsee">
-           <td>{{item.type}}</td>
-           <td>{{item.name}}</td>
-           <td>{{item.number}}</td>
+           <tr><td>商品名称</td><td>下单日期</td><td>商家</td></tr>
+           <tr v-for="item in bdata">
+           <td>{{item.production}}</td>
+           <td>{{item.date}}</td>
+           <td>{{item.shoper}}</td>
            </tr>
            </table>
         </div>
@@ -194,18 +145,18 @@
         </div>
         <div id="memberusedata" style="display: none">
         <table>
-        <tr><td>物料类型</td><td>使用人员</td><td>物料名称</td><td>物料编号</td><td>使用时间</td><td>使用量</td><td>删除记录</td></tr>
-        <tr v-for="item in userdata">
-        <td>{{item.type}}</td>
-        <td>{{item.username}}</td>
-        <td>{{item.goodsname}}</td>
-        <td>{{item.goodsid}}</td>
-        <td>{{item.usedata}}</td>
-        <td>{{item.usernumber}}</td>
+        <tr><td>商品编号</td><td>买家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td><td>卖家名称</td><td>删除记录</td></tr>
+        <tr v-for="item in comment">
+            <td style="display: none">{{item.coid}}</td>
+        <td>{{item.pid}}</td>
+        <td>{{item.account}}</td>
+        <td>{{item.comment}}</td>
+        <td>{{item.picture}}</td>
+        <td>{{item.date}}</td>
+        <td>{{item.shoper}}</td>
         <td><button v-on:click="dusedata(item)">删除</button></td>
         </tr>
         </table>
-        <a href="down"><button>输出使用记录excel表格</button></a>
         </div>
     </div>
 			</div>

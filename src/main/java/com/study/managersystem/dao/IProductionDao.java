@@ -21,8 +21,8 @@ public interface IProductionDao {
     @Select("select * from production where name = #{keyword}")
     List<Production> selectByKeyword(String keyword);
 
-    @Insert("insert into production (name,material,date) value(#{name},#{material},#{date})")
-    int addProduction(String name, String material, Date date);
+    @Insert("insert into production (name,material,date,shoper) value(#{name},#{material},#{date},#{shoper})")
+    int addProduction(String name, String material, Date date,String shoper);
 
     @Update("update  production  set name=#{name},material=#{material},date=#{date} where pid = #{pid}")
     int updateProduction(int pid,String name, String material, Date date);

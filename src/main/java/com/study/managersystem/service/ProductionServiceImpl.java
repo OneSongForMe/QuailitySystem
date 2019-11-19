@@ -50,7 +50,7 @@ public class ProductionServiceImpl {
     public String insert(Production production){
         String result = null;
 
-        int index = iProductionDao.addProduction(production.getName(),production.getMaterial(),new Date());
+        int index = iProductionDao.addProduction(production.getName(),production.getMaterial(),new Date(),production.getShoper());
 
         if(index > 0){
             result = "success";

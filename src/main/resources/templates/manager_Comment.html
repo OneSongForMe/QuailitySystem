@@ -37,6 +37,42 @@
         <div><a @click="linkInsert()">我要说</a></div>
     </div>
     <router-view :parentcomment="toupdate" @insert="insert" @update="update"></router-view>
+
+    <form action="/comment/insert" method="post" enctype="multipart/form-data">
+        <div>
+            <input  name = "pid" value="1"></input>
+        </div>
+        <div>
+            <input name="account" value="zs"></input>
+        </div>
+        <div>
+            <textarea name="comment"></textarea>
+        </div>
+        <div>
+            <input type="file" name="multipartFile" value="可选">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
+
+    <form action="/comment/insert" method="post" enctype="multipart/form-data">
+        <div>
+            <input  name = "pid" value="1"></input>
+        </div>
+        <div>
+            <input name="account" value="zs"></input>
+        </div>
+        <div>
+            <textarea name="comment"></textarea>
+        </div>
+        <div>
+            <input type="file" name="multipartFile" value="可选">
+        </div>
+        <div>
+            <input type="submit" value="提交">
+        </div>
+    </form>
 </div>
 
 <template id="insert">

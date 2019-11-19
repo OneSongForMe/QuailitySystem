@@ -15,17 +15,20 @@ public interface ICommentDao {
     @Select("select * from comment ")
     List<Comment> selectAll();
 
+    @Select("select * from comment where account = #{account}")
+    List<Comment> selectByAccount(String account);
+
     @Select("select * from comment where pid = #{pid}")
     List<Comment> selectByProduction(int pid);
 
     @Select("select * from comment where pid = #{pid} and istop = 1")
     List<Comment> selectByProductionAndTop(int pid);
 
-    @Insert("insert into comment (pid,account,comment,picture,date) value(#{pid},#{account},#{comment},#{picture},#{date})")
-    int insertByProduction(int pid, String account, String comment, String picture, Date date);
+    @Insert("insert into comment (pid,account,comment,picture,shoper,date) value(#{pid},#{account},#{comment},#{picture},#{shoper},#{date})")
+    int insertByProduction(int pid, String account, String comment, String picture, String shoper, Date date);
 
     @Update("update  comment set pid=#{pid},account=#{account},comment=#{comment},picture=#{picture},date=#{date} where coid = #{coid}")
-    int update(int coid,int pid, String account, String comment, String picture, Date date);
+    int update(int coid, int pid, String account, String comment, String picture, Date date);
 
     @Delete("delete from comment where coid = #{coid}")
     int delete(int coid);

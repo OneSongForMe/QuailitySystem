@@ -8,13 +8,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("comment")
-public class comment {
+public class comment{
 
 
     @Autowired
@@ -33,6 +36,14 @@ public class comment {
     public List<Comment> selectAll(){
 
         List<Comment> comments = commentService.selectAll();
+        return comments;
+    }
+
+    @RequestMapping("selectByAccount")
+    @ResponseBody
+    public List<Comment> selectByAccount(String account){
+
+        List<Comment> comments = commentService.selectByAccount(account);
         return comments;
     }
 
@@ -69,9 +80,30 @@ public class comment {
 
     @RequestMapping("insert")
     @ResponseBody
-    public String insert(@RequestBody Comment comment){
+    public String insert(Comment comment, MultipartFile multipartFile){
 
+
+        String parentPath = "D:/Picture/";
+        String path = null;
+        File dir = new File(parentPath);
+        File file = null;
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        if(multipartFile != null){
+            System.out.println(multipartFile.getOriginalFilename());
+            file = new File(parentPath+multipartFile.getOriginalFilename());
+            try {
+                multipartFile.transferTo(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            path = file.getAbsolutePath();
+        }
+        comment.setPicture(path);
         comment.setDate(new Date());
+
+
         String result = commentService.insertByProduction(comment);
         return result;
     }

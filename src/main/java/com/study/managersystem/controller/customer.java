@@ -2,8 +2,10 @@ package com.study.managersystem.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.study.managersystem.entity.Comment;
 import com.study.managersystem.entity.Customer;
 import com.study.managersystem.entity.Production;
+import com.study.managersystem.service.CommentServiceImpl;
 import com.study.managersystem.service.CustomerServiceImpl;
 import com.study.managersystem.service.ProductionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class customer {
 
     @Autowired
     private ProductionServiceImpl productionService;
+
+    @Autowired
+    private CommentServiceImpl commentService;
 
     @RequestMapping("loginC")
     public String  login(){return "login";}
@@ -91,6 +96,32 @@ public class customer {
         return result;
     }
 
+    @RequestMapping("selectByShoper")
+    @ResponseBody
+    public List<Comment> selectComment(HttpSession session){
+        List<Comment> comments = null;
+        String shoper = (String)session.getAttribute("loginer");
+        comments =commentService.selectByShoper(shoper);
+        return comments;
+    }
+
+    //增加商品
+    @RequestMapping("addgoods")
+    @ResponseBody
+    public String addgoods(String name,String material,HttpSession httpSession){
+        String result = "fail";
+        if("".equals(name)||"".equals(material)){
+            return  result;
+        }
+       Production production = new Production();
+       production.setName(name);
+       production.setMaterial(material);
+       production.setDate(new Date());
+       String shoper = (String)httpSession.getAttribute("loginer");
+       production.setShoper(shoper);
+       result = productionService.insert(production);
+        return result;
+    }
 
 
 

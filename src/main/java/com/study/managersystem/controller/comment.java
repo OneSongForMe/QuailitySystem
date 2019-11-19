@@ -1,5 +1,6 @@
 package com.study.managersystem.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.study.managersystem.dao.ICommentDao;
 import com.study.managersystem.entity.Comment;
 import com.study.managersystem.service.CommentServiceImpl;
@@ -55,12 +56,14 @@ public class comment{
         return comments;
     }
 
-    @RequestMapping("selectByProductionAndTop")
+    @RequestMapping("selectByshoper")
     @ResponseBody
-    public List<Comment> selectByProductionAndTop(int pid){
-
-        List<Comment> comments = commentService.selectByProductionAndTop(pid);
-        return comments;
+    public String selectByshoper(HttpSession httpSession){
+        String result=null;
+        String account=httpSession.getAttribute("loginer").toString();
+        List<Comment>comments=commentService.selectByShoper(account);
+        result= JSON.toJSONString(comments);
+        return result;
     }
 
     @RequestMapping("insertComment")

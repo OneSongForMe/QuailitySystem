@@ -19,6 +19,11 @@ public class CommentServiceImpl {
         return comments;
     }
 
+    public List<Comment> selectByShoper(String shoper){
+        List<Comment> comments = iCommentDao.selectByShoper(shoper);
+        return comments;
+    }
+
     public List<Comment> selectByProduction(int pid){
         List<Comment> comments = iCommentDao.selectByProduction(pid);
         return comments;

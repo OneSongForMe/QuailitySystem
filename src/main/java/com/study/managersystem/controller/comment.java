@@ -104,8 +104,7 @@ public class comment{
             }
             path = file.getAbsolutePath();
         }
-        comment.setPicture(path);
-        System.out.println(path);
+        comment.setPicture("picture/"+multipartFile.getOriginalFilename());
         comment.setDate(new Date());
 
 

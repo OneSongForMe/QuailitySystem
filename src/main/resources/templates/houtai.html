@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
 		<title></title>
@@ -158,7 +158,7 @@
         <td>{{item.pid}}</td>
         <td>{{item.account}}</td>
         <td>{{item.comment}}</td>
-        <td><img src="'picture/'+item.picture"></img></td>
+        <td><img v-bind:src="item.picture"></img></td>
         <td>{{item.date}}</td>
         </tr>
         </table>

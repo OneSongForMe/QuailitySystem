@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 
@@ -104,7 +104,7 @@ public class comment{
             }
             path = file.getAbsolutePath();
         }
-        comment.setPicture("picture/"+multipartFile.getOriginalFilename());
+        comment.setPicture(path);
         comment.setDate(new Date());
 
 
@@ -128,6 +128,37 @@ public class comment{
 
         String result = commentService.delete(coid);
         return result;
+    }
+
+
+
+    @RequestMapping("getPicture")
+    @ResponseBody
+    public String getPicture(String picture, HttpServletResponse response){
+
+
+        int len;
+        byte[] buf = new byte[1024];
+
+        File file = new File(picture);
+        try {
+            FileInputStream inputStream = new FileInputStream(file);
+            BufferedInputStream bin = new BufferedInputStream(inputStream);
+            OutputStream out = response.getOutputStream();
+            while((len=bin.read(buf))!=-1){
+                out.write(buf,0,len);
+            }
+            out.flush();
+            out.close();
+            bin.close();
+            inputStream.close();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 

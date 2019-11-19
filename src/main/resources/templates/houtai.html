@@ -110,7 +110,7 @@
                <tr v-for="item in buydata">
                    <td>{{item.production}}</td>
                    <td>{{item.customer}}</td>
-                   <td>{{item.date}}</td>
+                   <td>{{item.date|subDate}}</td>
                </tr>
            </table>
         </div>
@@ -149,6 +149,10 @@
                   <tr><td><input type="submit" value="提交"></td></tr>
               </table>
           </form>
+            <button onclick="seeme()"><a v-on:click="seecomment()">查看我的反馈</a></button>
+            <div style="display: none;">
+
+            </div>
         </div>
         <div id="memberusedata" style="display: none">
         <table>
@@ -158,8 +162,8 @@
         <td>{{item.pid}}</td>
         <td>{{item.account}}</td>
         <td>{{item.comment}}</td>
-        <td><img v-bind:src="item.picture"></img></td>
-        <td>{{item.date}}</td>
+        <td><img style="width: 200px;height: 200px;" v-bind:src="'getPicture?picture='+item.picture" ></img></td>
+        <td>{{item.date|subDate}}</td>
         </tr>
         </table>
         </div>

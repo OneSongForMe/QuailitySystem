@@ -1,3 +1,12 @@
+
+Vue.filter('subDate',function(date){
+	var dt = new Date(date);
+	var y = dt.getFullYear();
+	var m = dt.getMonth()+1;
+	var d = dt.getDate();
+	return `${y}-${m}-${d}`
+});
+
 var vm=new Vue({
 	el:"#app",
 	data: {
@@ -31,7 +40,7 @@ var vm=new Vue({
 
 		showbuy:function(){
 			var t=this;
-			axios.get('selectByshoper')
+			axios.get('orderbyshoper')
 				.then(function (res) {
 					t.buydata=res.data;
 					for( var i = 0; i < t.buydata.length; i++ ){

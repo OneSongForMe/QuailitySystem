@@ -18,6 +18,9 @@ public interface ICommentDao {
     @Select("select * from comment where account = #{account}")
     List<Comment> selectByAccount(String account);
 
+    @Select("select * from comment where shoper = #{shoper}")
+    List<Comment> selectByShoper(String shoper);
+
     @Select("select * from comment where pid = #{pid}")
     List<Comment> selectByProduction(int pid);
 

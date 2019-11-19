@@ -137,12 +137,22 @@
         <div id="data2"style="display: none;">
             8
         </div>
+
         <div id="analys" style="width: 600px;height:400px;display: none">
-            dsfagqwegfdsagasfadsfasdf
+          <form action="insert" method="post">
+              <table>
+                  <tr><td>商品编号</td><td><input name="pid" type="text"></td></tr>
+                  <tr><td>商品名称</td><td><input  type="text"></td></tr>
+                  <tr><td>信息反馈</td><td><textarea name="comment"></textarea></td></tr>
+                  <tr><td>添加图片</td><td><input type="file" name="multipartFile" value="选择图片"></td></tr>
+                  <tr><td>卖家名称</td><td><input type="text" name="shoper"></td></tr>
+                  <tr><td><input type="submit" value="提交"></td></tr>
+              </table>
+          </form>
         </div>
         <div id="memberusedata" style="display: none">
         <table>
-        <tr><td>商品编号</td><td>买家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td><td>卖家名称</td><td>删除记录</td></tr>
+        <tr><td>商品编号</td><td>买家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td></tr>
         <tr v-for="item in comment">
             <td style="display: none">{{item.coid}}</td>
         <td>{{item.pid}}</td>
@@ -150,8 +160,6 @@
         <td>{{item.comment}}</td>
         <td>{{item.picture}}</td>
         <td>{{item.date}}</td>
-        <td>{{item.shoper}}</td>
-        <td><button v-on:click="dusedata(item)">删除</button></td>
         </tr>
         </table>
         </div>

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("comment")
 public class comment{
 
 
@@ -80,9 +80,9 @@ public class comment{
 
     @RequestMapping("insert")
     @ResponseBody
-    public String insert(Comment comment, MultipartFile multipartFile){
+    public String insert(Comment comment, HttpSession httpSession, MultipartFile multipartFile){
 
-
+        comment.setAccount(httpSession.getAttribute("loginer").toString());
         String parentPath = "D:/Picture/";
         String path = null;
         File dir = new File(parentPath);
@@ -101,6 +101,7 @@ public class comment{
             path = file.getAbsolutePath();
         }
         comment.setPicture(path);
+        System.out.println(path);
         comment.setDate(new Date());
 
 

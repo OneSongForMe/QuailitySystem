@@ -17,6 +17,9 @@ public interface IProductionDao {
     @Select("select * from production")
     List<Production> loadProduction();
 
+    @Select("select * from production where shoper=#{name}")
+    List<Production> getmy(String name);
+
     //根据关键字查询产品
     @Select("select * from production where name = #{keyword}")
     List<Production> selectByKeyword(String keyword);

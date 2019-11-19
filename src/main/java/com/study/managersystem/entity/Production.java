@@ -8,6 +8,15 @@ public class Production implements Serializable {
     private String name;
     private String material;
     private Date date;
+    private String shoper;
+
+    public String getShoper() {
+        return shoper;
+    }
+
+    public void setShoper(String shoper) {
+        this.shoper = shoper;
+    }
 
     public int getPid() {
         return pid;
@@ -43,11 +52,12 @@ public class Production implements Serializable {
 
     @Override
     public String toString() {
-        return "{" +
+        return "Production{" +
                 "pid=" + pid +
                 ", name='" + name + '\'' +
                 ", material='" + material + '\'' +
                 ", date=" + date +
+                ", shoper='" + shoper + '\'' +
                 '}';
     }
 }

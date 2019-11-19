@@ -10,7 +10,15 @@ public class Comment implements Serializable {
     private String comment;
     private String picture;
     private Date date;
+    private String shoper;
 
+    public String getShoper() {
+        return shoper;
+    }
+
+    public void setShoper(String shoper) {
+        this.shoper = shoper;
+    }
 
     public Comment() {
     }
@@ -72,6 +80,7 @@ public class Comment implements Serializable {
                 ", comment='" + comment + '\'' +
                 ", picture='" + picture + '\'' +
                 ", date=" + date +
+                ", shoper='" + shoper + '\'' +
                 '}';
     }
 }

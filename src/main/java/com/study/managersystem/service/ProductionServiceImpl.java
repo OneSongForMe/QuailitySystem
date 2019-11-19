@@ -20,6 +20,11 @@ public class ProductionServiceImpl {
         return productions;
     }
 
+    public List<Production> getmys(String name){
+        List<Production> productions = iProductionDao.getmy(name);
+        return productions;
+    }
+
     public List<Production> selectByKeyword(String keyword){
         List<Production> productions = iProductionDao.selectByKeyword(keyword);
         return productions;

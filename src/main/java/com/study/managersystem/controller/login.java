@@ -97,7 +97,6 @@ public class login {
     @ResponseBody
     public String loginer(HttpSession httpSession){
         String account = (String)httpSession.getAttribute("loginer");
-        System.out.println("登录"+account);
         return account;
     }
 

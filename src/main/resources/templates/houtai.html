@@ -18,28 +18,32 @@
 				</div>
 				<div id="top2">
 					<div id="top3" title="退出">
-					<a href="adexit" onmouseout="showt()"><img style="width: 60px;height: 60px; margin:6px 0px;" src="加载/img/ad01.jpg"></a>
+					<a href="/offLine" onmouseout="showt()"><img style="width: 60px;height: 60px; margin:6px 0px;" src="加载/img/ad01.jpg"></a>
 					</div>
+
 					<img title="系统管理员" src="加载/img/ad03.png" style="width: 65px; height: 80%; margin: 8px 0px; float: left;">
 					<span id="top4s"></span>
+
 					<div id="clock" title="当前时间">
+                        <a id="shop1" href="beshoper">成为商家</a>
    					<p class="date">{{ date }}{{ time }}</p>
 					</div>
 				</div>
 			</div>
 			<div id="left">
-				<button id="leftbtn1" onclick="zhankai1()" onmouseover="show1()" onmouseleave="hide1()">个人信息查看</button>
-				<button id="leftbtn2" onclick="zhankai2()" onmouseover="show2()" onmouseleave="hide2()">在售物品信息</button>
+				<button id="leftbtn1" onclick="zhankai1()" onmouseover="show1()" v-on:click="lookone()" onmouseleave="hide1()">个人信息查看</button>
+				<button id="leftbtn2" style="display: none;" onclick="zhankai2()" onmouseover="show2()" onmouseleave="hide2()">在售物品信息</button>
 				<div id="equp" style="display: none;">
-					<button onclick="eq1()" v-on:click="showgoods" >商品查看</button>
-					<button onclick="eq2()" >商品订单</button>
-					<button onclick="eq3()" >商品物流</button>
+					<button onclick="eq1()" v-on:click="showgoods()">商品查看录入</button>
+					<button onclick="eq2()" >商品已售订单</button>
+					<button onclick="eq3()" >商品发货物流</button>
 				</div>
 				<button id="leftbtn3" onclick="zhankai3()" onmouseover="show3()" onmouseleave="hide3()">订单及货物</button>
 				<div id="item" style="display: none;">
-            	<button onclick="item1()" >订单查看及修改</button>
+            	<button onclick="item1()" >订单查看及确认</button>
         		</div>
-        		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showuserdata" onmouseleave="hide4()">已购商品问题反馈</button>
+        		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showuserdata" onmouseleave="hide4()">商品问题反馈</button>
+
 				
         		<button id="leftbtn5" onclick="zhankai5()"  onmouseover="show5()" onmouseleave="hide5()">物料使用数据分析</button>
         		<div id="anydata" style="display: none">
@@ -56,16 +60,17 @@
 				
 			</div>
 			<div id="main">
-				
-				
-
-			<div id="mainbody">
-        <div id="users2"style="display: none;">
-        <form action="adeditself" method="post">
+                <div id="mainbody">
+                    <div id="users2"style="display: none;">
+        <form action="editself" method="post">
         <table class="tab2">
+            <tr style="display: none">
+                <td>id</td>
+                <td><input name="cid" readonly="readonly"  v-model="mine.cid"></input></td>
+            </tr>
         <tr>
         <td>姓名</td>
-        <td><input name="adname" readonly="readonly" v-model="mine.adname"></td>
+        <td><input name="account" readonly="readonly" v-model="mine.account"></td>
         </tr>
         <tr>
         <td>密码</td>
@@ -73,42 +78,35 @@
         </tr>
         <tr>
         <td>联系方式</td>
-        <td><input name="number" v-model="mine.number"></td>
+        <td><input name="mobile" v-model="mine.mobile"></td>
         </tr>
         <tr>
-         <td>邮箱</td>
-          <td><input name="email" v-model="mine.email"></td>
+            <td>邮箱</td>
+            <td><input name="email" v-model="mine.email"></td>
         </tr>
+            <tr>
+                <td>地址</td>
+                <td><input name="address" v-model="mine.address"></td>
+            </tr>
         </table>
         <button type="submit">修改</button>
         </form>
         </div>
         <div id="eq1"style="display: none;">
-          	类型<input type="text" list="itemlist" v-model="keywords1"> 
-          	物料编号<input type="text" v-model="keywords2"> 
-          	物料名称<input type="text" v-model="keywords3">
-        		<datalist id="itemlist">
-    			<option>布料</option>
-    			<option>包装盒</option>
-    			<option>胶料</option>
-    			<option>线头</option>
-				</datalist>
 				
 				<table class="tab3">
-				<tr><td>物料种类</td><td>物料名称</td><td>物料编号</td><td>仓库中的数量</td></tr>
+				<tr><td>商品标号</td><td>商品名称</td><td>商品来源</td></tr>
 				<!-- <tr v-for="item in goods"> -->
-				
-				<tr  v-for="item in lookfor(keywords1,keywords2,keywords3)">
-				<td>{{item.type}}</td>
-				<td>{{item.godsname}}</td>
-				<td>{{item.goodsid}}</td>
-				<td>{{item.shuliang}}</td>
+				<tr  v-for="item in goods">
+				<td>{{item.pid}}</td>
+				<td>{{item.name}}</td>
+				<td>{{item.material}}</td>
 				</tr>
 				</table>
         </div>
         <div id="eq2"style="display: none;">
            <table class="tab4">
-           <tr><td>物料类别</td><td><input list="itemlist" id="gtype"></td></tr>
+           <tr><td>物料类别</td><td><input  id="gtype"></td></tr>
            <tr><td>物料名称</td><td><input id="gname"></td></tr>
            <tr><td>物料编号</td><td><input id="gid"></td></tr>
            <tr><td>货源地</td><td><input id="gsource"></td></tr>
@@ -135,7 +133,7 @@
         </div>
         <div id="eq3"style="display: none;">
            <table class="tab5">
-           <tr><td>物料类别</td><td><input list="itemlist" id="btype"></td></tr>
+           <tr><td>物料类别</td><td><input  id="btype"></td></tr>
            <tr><td>物料名称</td><td><input id="bname"></td></tr>
            <tr><td>物料编号</td><td><input id="bid"></td></tr>
            <tr><td>退货时间</td><td><input id="bdata"></td></tr>
@@ -214,7 +212,51 @@
 		</div>
 		<script type="text/javascript" src="加载/js/admin2.js" ></script>
 		<script type="text/javascript" src="加载/js/admin1.js" ></script>
+<script>
+    $($.ajax({
+        type:"get",// get或者post
+        url:"loginer",// 请求的url地址
+        dataType:"text",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+        success:function(data){ // 成功拿到结果放到这个函数 data就是拿到的结果
+            console.log("成功拿到结果放到这个函数");
+            if(data!=null&&data!==""){
+                document.getElementById("top4s").innerText=data;
+            }
+            else{
+                window.location.replace("/loginC");
+            }
+        },
+        error:function(){//失败的函数
+            console.log("失败的函数");
+        },
+        complete:function(){//不管成功还是失败
+            console.log("不管成功还是失败")
+        }
+    }));
+    $.ajax({
+        type:"get",// get或者post
+        url:"isshoper",// 请求的url地址
+        dataType:"text",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+        success:function(data){ // 成功拿到结果放到这个函数 data就是拿到的结果
+            console.log("成功拿到结果放到这个函数");
+            if(data!=null&&data!==""){
+                document.getElementById("shop1").style.display="none";
+                document.getElementById("leftbtn2").style.display="block";
+            }
+            else{
+                document.getElementById("shop1").style.display="block";
+                document.getElementById("leftbtn2").style.display="none";
+            }
+        },
+        error:function(){//失败的函数
+            console.log("失败的函数");
+        },
+        complete:function(){//不管成功还是失败
+            console.log("不管成功还是失败")
+        }
+    })
 
+</script>
 		
 	</body>
 </html>

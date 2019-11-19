@@ -3,15 +3,32 @@ var vm=new Vue({
 	data: {
 		members: [{}],
 		mine: '',
-		goods:[{"type":"","godsname":"","goodsid":"","shuliang":""}],
+		goods:[{}],
 		keywords1:'',keywords2:'',keywords3:'',
 		buydata:[{}],
 		backdata:[{}],
 		odata:[{}],
 		forsee:[{}],
-		userdata:[{}],
+		userdata:[{}]
 	},
 	methods: {
+
+		lookone:function(){
+			var t=this;
+			axios.post('findone')
+				.then(function (res) {
+					t.mine=res.data;
+				});
+		},
+
+        showgoods:function(){
+            var t=this;
+            axios.get('mygoods')
+                .then(function (res) {
+                    t.goods=res.data;
+                });
+        },
+
 		people:function(){
 			var t=this;
 			axios.post('showpeople')
@@ -47,13 +64,7 @@ var vm=new Vue({
 				t.mine=res.data;
 			})
 		 },
-		 showgoods:function(){
-			 var t=this;
-				axios.get('allgoods')
-				.then(function (res) {
-					t.goods=res.data;
-				});
-		 },
+
 		 
 		 lookfor:function (keywords1,keywords2,keywords3) {
 	            var newlist = [{}];

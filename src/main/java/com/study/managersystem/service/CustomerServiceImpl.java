@@ -15,10 +15,7 @@ public class CustomerServiceImpl {
     private ICustomerDao iCustomerDao;
 
     public String isExist(String account){
-
-
         Customer customer = iCustomerDao.isExist(account);
-
         String result = "is not isExist";
         if(customer!=null){
             result = "isExist";
@@ -64,13 +61,14 @@ public class CustomerServiceImpl {
     public String update(Customer customer){
         String result = null;
         int index = iCustomerDao.update(customer.getCid(),customer.getAccount(),
-                customer.getPassword(),customer.getMobile(),customer.getDate());
+                customer.getPassword(),customer.getMobile(),customer.getAddress(),customer.getEmail(),customer.getDate());
         if(index > 0){
             result = "success";
         }
         System.out.println(index);
         return result;
     }
+
 
     public String delete(int cid){
         String result = null;
@@ -91,10 +89,26 @@ public class CustomerServiceImpl {
         return result;
     }
 
+    public Customer getone(String name){
+        Customer customer = null;
+        customer=iCustomerDao.isExist(name);
+        return customer;
+    }
 
     public List<Customer> selectAll(){
         List<Customer> customers = iCustomerDao.findAll();
         return  customers;
+    }
+
+    public int beshoper(String name){
+        int s;
+        s=iCustomerDao.beshoper(name);
+        return s;
+    }
+
+    public Customer isshoper(String account){
+        Customer customer = iCustomerDao.isExist(account);
+        return customer;
     }
 
 }

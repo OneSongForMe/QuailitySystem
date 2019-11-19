@@ -77,7 +77,7 @@ public class customer {
     public String isshoper(HttpSession httpSession){
         String result=null;
         String account = (String)httpSession.getAttribute("loginer");
-        Customer customer;
+        Customer customer=new Customer();
         customer=customerService.isshoper(account);
         int s=customer.getType();
         if(s==1){

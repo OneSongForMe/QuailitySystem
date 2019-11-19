@@ -45,11 +45,11 @@
         		<button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" v-on:click="showcomment()" onmouseleave="hide4()">商品问题反馈</button>
 
 				
-        		<button id="leftbtn5" onclick="zhankai5()"  onmouseover="show5()" onmouseleave="hide5()">物料使用数据分析</button>
+        		<button id="leftbtn5" onclick="useanalys1()"  onmouseover="show5()" onmouseleave="hide5()">商品问题反馈</button>
         		<div id="anydata" style="display: none">
-            	<button onclick="useanalys1()">种类相关分析</button>
-            	<button onclick="useanalys2()">人员相关分析</button>
-            	<button onclick="useanalys3()">时间相关分析</button>
+<!--            	<button onclick="useanalys1()">种类相关分析</button>-->
+<!--            	<button onclick="useanalys2()">人员相关分析</button>-->
+<!--            	<button onclick="useanalys3()">时间相关分析</button>-->
         	</div>
         	<!-- <button id="leftbtn4" onclick="zhankai4()" onmouseover="show4()" onmouseleave="hide4()">查看人员使用日志</button>
 				<div id="data"style="display: none;">
@@ -137,15 +137,22 @@
         <div id="data2"style="display: none;">
             8
         </div>
+
         <div id="analys" style="width: 600px;height:400px;display: none">
-           输入关键字<input type="text" id="key">
-           <div id="ana" style="width: 100%;height: 100%" >
-           
-           </div>
+          <form action="insert" method="post" enctype="multipart/form-data">
+              <table>
+                  <tr><td>商品编号</td><td><input name="pid" type="text"></td></tr>
+                  <tr><td>商品名称</td><td><input  type="text"></td></tr>
+                  <tr><td>信息反馈</td><td><textarea name="comment"></textarea></td></tr>
+                  <tr><td>添加图片</td><td><input type="file" name="multipartFile" value="选择图片"></td></tr>
+                  <tr><td>卖家名称</td><td><input type="text" name="shoper"></td></tr>
+                  <tr><td><input type="submit" value="提交"></td></tr>
+              </table>
+          </form>
         </div>
         <div id="memberusedata" style="display: none">
         <table>
-        <tr><td>商品编号</td><td>买家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td><td>卖家名称</td><td>删除记录</td></tr>
+        <tr><td>商品编号</td><td>买家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td></tr>
         <tr v-for="item in comment">
             <td style="display: none">{{item.coid}}</td>
         <td>{{item.pid}}</td>
@@ -153,8 +160,6 @@
         <td>{{item.comment}}</td>
         <td>{{item.picture}}</td>
         <td>{{item.date}}</td>
-        <td>{{item.shoper}}</td>
-        <td><button v-on:click="dusedata(item)">删除</button></td>
         </tr>
         </table>
         </div>
@@ -193,10 +198,17 @@
             if(data!=null&&data!==""){
                 document.getElementById("shop1").style.display="none";
                 document.getElementById("leftbtn2").style.display="block";
+                document.getElementById("leftbtn3").style.display="none";
+                document.getElementById("leftbtn4").style.display="block";
+                document.getElementById("leftbtn5").style.display="none";
+
             }
             else{
                 document.getElementById("shop1").style.display="block";
                 document.getElementById("leftbtn2").style.display="none";
+                document.getElementById("leftbtn3").style.display="block";
+                document.getElementById("leftbtn4").style.display="none";
+                document.getElementById("leftbtn5").style.display="block";
             }
         },
         error:function(){//失败的函数

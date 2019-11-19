@@ -56,7 +56,7 @@ public class login {
 
         boolean register = customerService.register(customer);
         if(register){
-            return "loginC";
+            return "login";
         }
         return "registerC";
     }

@@ -4,7 +4,6 @@ var vm=new Vue({
 		members: [{}],
 		mine: '',
 		goods:[{}],
-		keywords1:'',keywords2:'',keywords3:'',
 		buydata:[{}],
 		comment:[{}],
 		bdata:[{}],

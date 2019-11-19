@@ -84,6 +84,7 @@ public class comment {
 
 
         String parentPath = "D:/Picture/";
+        String path = null;
         File dir = new File(parentPath);
         File file = null;
         if(!dir.exists()){
@@ -97,10 +98,11 @@ public class comment {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
+            path = file.getAbsolutePath();
         }
+        comment.setPicture(path);
         comment.setDate(new Date());
-        comment.setPicture(file.getAbsolutePath());
+
 
         String result = commentService.insertByProduction(comment);
         return result;

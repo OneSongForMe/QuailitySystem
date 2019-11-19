@@ -18,10 +18,7 @@ spring:
   thymeleaf:
     cache: false
 
-  mvc:
-    static-path-pattern: /picture/**
-  resources:
-    static-locations: file:D://picture/
+
   servlet:
     multipart:
       max-file-size: 10MB

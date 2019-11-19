@@ -4,12 +4,12 @@ var vm=new Vue({
 		members: [{}],
 		mine: '',
 		goods:[{}],
-		keywords1:'',keywords2:'',keywords3:'',
 		buydata:[{}],
+		comment:[{}],
+		bdata:[{}],
 		backdata:[{}],
 		odata:[{}],
-		forsee:[{}],
-		userdata:[{}]
+		forsee:[{}]
 	},
 	methods: {
 
@@ -28,6 +28,62 @@ var vm=new Vue({
                     t.goods=res.data;
                 });
         },
+
+		showbuy:function(){
+			var t=this;
+			axios.get('selectByshoper')
+				.then(function (res) {
+					t.buydata=res.data;
+					for( var i = 0; i < t.buydata.length; i++ ){
+						t.buydata[i].usedata = timestampToTime(t.buydata[i].usedata);
+					}
+				});
+		},
+
+		backg:function(){
+			var t=this;
+			var a=document.getElementById("gname").value;
+			var b=document.getElementById("gsource").value;
+			axios.get('addgoods',
+				{params:{name:a,material:b}})
+				.then(function(res){
+
+				});
+		},
+
+		showcomment:function(){
+			var t=this;
+			axios.get('selectByshoper')
+				.then(function (res) {
+					t.comment=res.data;
+					for( var i = 0; i < t.comment.length; i++ ){
+						t.comment[i].usedata = timestampToTime(t.comment[i].usedata);
+					}
+				});
+		},
+
+		lookdata:function(){
+			var t=this;
+			axios.get('selectByshoper')
+				.then(function (res) {
+					t.bdata=res.data;
+					for( var i = 0; i < t.bata.length; i++ ){
+						t.bdata[i].usedata = timestampToTime(t.bdata[i].usedata);
+					}
+				});
+		},
+
+		dusedata:function(item){
+			var t=this;
+			axios.get('duserdata',
+				{params:{coid:item.coid}})
+				.then(function(res){
+					t.comment=res.data;
+					for( var i = 0; i < t.comment.length; i++ ){
+						t.comment[i].usedata = timestampToTime(t.comment[i].usedata);
+					}
+				})
+		},
 
 		people:function(){
 			var t=this;
@@ -65,20 +121,6 @@ var vm=new Vue({
 			})
 		 },
 
-		 
-		 lookfor:function (keywords1,keywords2,keywords3) {
-	            var newlist = [{}];
-	            this.goods.forEach(function(item){
-	                if((item.type.indexOf(keywords1) != -1)
-	                    &&(item.goodsid.indexOf(keywords2) != -1)
-	                    &&(item.godsname.indexOf(keywords3) != -1))
-	                {
-	                    newlist.push(item);
-	                }
-	            });
-	            return newlist;
-	        },
-	        
 	        showuserdata:function(){
 	        	var t=this;
 	        	axios.get('memberusedata')
@@ -91,22 +133,7 @@ var vm=new Vue({
 	        			});
 	        },
 	        
-	        backg:function(){
-	        	var t=this;
-	        	var a=document.getElementById("btype").value;
-	        	var b=document.getElementById("bname").value;
-	        	var c=document.getElementById("bid").value;
-	        	var d=document.getElementById("bnumber").value;
-	        	var e=document.getElementById("bdata").value;
-	        	axios.get('backgoods', 
-	    		{params:{btype:a,bname:b,bid:c,bnumber:d,bdata:e}})
-	    		.then(function(res){
-	    			t.backdata=res.data;
-	    			for( var i = 0; i < t.backdata.length; i++ ){
-						t.backdata[i].backdata = timestampToTime(t.backdata[i].backdata);
-					}
-	    		});
-	        },
+
 	        addo:function(){
 	        	var t=this;
 	        	var a=document.getElementById("oname").value;
@@ -149,18 +176,7 @@ var vm=new Vue({
 						t.buydata[i].indate = timestampToTime(t.buydata[i].indate);
 					}
 				});
-	        },
-	        
-	        dusedata:function(item){
-	        	axios.get('duserdata', 
-	        			{params:{id:item.id}})
-	        			.then(function(res){
-	        				t.userdata=res.data;
-	    	        		for( var i = 0; i < t.userdata.length; i++ ){
-	    						t.userdata[i].usedata = timestampToTime(t.userdata[i].usedata);
-	    					}
-	        			})
-	        },
+	        }
 	        
 
 	}

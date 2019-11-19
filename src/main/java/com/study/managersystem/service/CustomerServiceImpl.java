@@ -15,10 +15,7 @@ public class CustomerServiceImpl {
     private ICustomerDao iCustomerDao;
 
     public String isExist(String account){
-
-
         Customer customer = iCustomerDao.isExist(account);
-
         String result = "is not isExist";
         if(customer!=null){
             result = "isExist";
@@ -34,7 +31,7 @@ public class CustomerServiceImpl {
 
         Customer anotherCustomer = iCustomerDao.isExist(account);
 
-        if(customer!=null){
+        if(customer!=null&&anotherCustomer!=null){
             if (password.equals(anotherCustomer.getPassword())){
                 return true;
             }
@@ -52,7 +49,7 @@ public class CustomerServiceImpl {
 
         Customer anotherCustomer = iCustomerDao.isExist(account);
         if(customer!=null){
-            index = iCustomerDao.add(account,password,mobile,date);
+            index = iCustomerDao.add(account,password,mobile,customer.getAddress(),customer.getEmail(),date);
             if(index > 0){
                 return true;
             }
@@ -60,16 +57,18 @@ public class CustomerServiceImpl {
         return false;
     }
 
+
     public String update(Customer customer){
         String result = null;
         int index = iCustomerDao.update(customer.getCid(),customer.getAccount(),
-                customer.getPassword(),customer.getMobile(),customer.getDate());
+                customer.getPassword(),customer.getMobile(),customer.getAddress(),customer.getEmail(),customer.getDate());
         if(index > 0){
             result = "success";
         }
         System.out.println(index);
         return result;
     }
+
 
     public String delete(int cid){
         String result = null;
@@ -83,16 +82,33 @@ public class CustomerServiceImpl {
 
     public String insert(Customer customer){
         String result = null;
-        int index = iCustomerDao.add(customer.getAccount(),customer.getPassword(),customer.getMobile(),customer.getDate());
+        int index = iCustomerDao.add(customer.getAccount(),customer.getPassword(),customer.getMobile(),customer.getAddress(),customer.getEmail(),customer.getDate());
         if(index > 0){
             result = "success";
         }
         return result;
     }
 
+    public Customer getone(String name){
+        Customer customer = null;
+        customer=iCustomerDao.isExist(name);
+        return customer;
+    }
+
     public List<Customer> selectAll(){
         List<Customer> customers = iCustomerDao.findAll();
         return  customers;
+    }
+
+    public int beshoper(String name){
+        int s;
+        s=iCustomerDao.beshoper(name);
+        return s;
+    }
+
+    public Customer isshoper(String account){
+        Customer customer = iCustomerDao.isExist(account);
+        return customer;
     }
 
 }

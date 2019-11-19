@@ -32,7 +32,7 @@ public class CommentServiceImpl {
     public String insertByProduction(Comment comment){
         int index = -1;
         String result = "fail";
-        index = iCommentDao.insertByProduction(comment.getPid(),comment.getAccount(),comment.getComment(),comment.getPicture(),comment.getDate());
+        index = iCommentDao.insertByProduction(comment.getPid(),comment.getAccount(),comment.getComment(),comment.getPicture(),comment.getShoper(),comment.getDate());
         if(index>0){
             result = "success";
         }
@@ -56,5 +56,9 @@ public class CommentServiceImpl {
             result = "success";
         }
         return result;
+    }
+    public List<Comment> selectByAccount(String account){
+        List<Comment> comments = iCommentDao.selectByAccount(account);
+        return comments;
     }
 }

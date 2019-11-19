@@ -10,6 +10,16 @@ public class Customer implements Serializable {
     private String email;
     private String mobile;
     private String address;
+    private int type;
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
     private Date date;
 
     public Customer() {
@@ -82,6 +92,7 @@ public class Customer implements Serializable {
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", address='" + address + '\'' +
+                ", type=" + type +
                 ", date=" + date +
                 '}';
     }

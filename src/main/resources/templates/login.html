@@ -3,22 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="/Css/login.css">
+    <link href="加载/css/bootstrap.min.css" title="" rel="stylesheet" />
+    <link title="orange" href="加载/css/loginC.css" rel="stylesheet" type="text/css">
 </head>
-<body background="/Image/bg01.jpg">
-<div class="loginForm">
-    <form action="/login/login" method="post" >
-        <div>账号<input type="text" name="account"/></div>
-        <div>密码<input type="text" name="password"/></div>
-        <div><input type="submit" value="login"/></div>
+<body>
 
+<div style="height:1px;"></div>
+<div class="login">
+    <header>
+        <h1>登陆</h1>
+    </header>
+    <div class="sr">
+        <form action="login" method="post">
+            <div class="name">
+                <label>
+                    <i class="sublist-icon glyphicon glyphicon-user"></i>
+                </label>
+                <input type="text" name="account" placeholder="这里输入登录名" class="name_inp">
+            </div>
+            <div class="name">
+                <label>
+                    <i class="sublist-icon glyphicon glyphicon-pencil"></i>
+                </label>
+                <input type="password" name="password"  placeholder="这里输入登录密码" class="name_inp">
+            </div>
+            <div class="row">
+                <div class="col-md-9"><input type="submit"  value="登录"></input></div>
+                <div class="col-md-3"><button ><a href="registerC">注册</a></button></div>
+            </div>
+
+        </form>
+    </div>
 
 </div>
-
-
-
-
-</form>
 
 </body>
 </html>

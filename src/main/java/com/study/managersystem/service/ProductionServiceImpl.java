@@ -20,6 +20,11 @@ public class ProductionServiceImpl {
         return productions;
     }
 
+    public List<Production> getmys(String name){
+        List<Production> productions = iProductionDao.getmy(name);
+        return productions;
+    }
+
     public List<Production> selectByKeyword(String keyword){
         List<Production> productions = iProductionDao.selectByKeyword(keyword);
         return productions;
@@ -50,7 +55,7 @@ public class ProductionServiceImpl {
     public String insert(Production production){
         String result = null;
 
-        int index = iProductionDao.addProduction(production.getName(),production.getMaterial(),new Date());
+        int index = iProductionDao.addProduction(production.getName(),production.getMaterial(),new Date(),production.getShoper());
 
         if(index > 0){
             result = "success";

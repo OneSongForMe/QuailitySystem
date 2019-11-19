@@ -1,64 +1,309 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head> <!--th:include="console/header">-->
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script  src="/JS/vue.js"></script>
-    <script  src="/JS/axios.js"></script>
+    <style>
+        #father{
+            border: 1px solid #FFFFFF;
+            width: 1300px;
+            height: 1800px;
+            margin: auto;
+
+        }
+        /*#logo{
+            border: 1px solid black;
+            width: 1300px;
+            height: 50px;
+        }*/
+        .top{
+            border: 1px solid #FFFFFF;
+            width: 257px;
+            height: 50px;
+            float: left;
+
+        }
+        #top{
+            padding-top: 12px;
+            height: 38px;
+        }
+        #menu{
+            border: 1px solid #FFFFFF;
+            width: 1300px;
+            height: 50px;
+            background-color: black;
+        }
+        ul li{
+            display: inline;
+            color: white;
+        }
+        #clear{
+            clear: both;
+        }
+
+        #product{
+            border: 1px solid #FFFFFF;
+            width: 1300px;
+            height: 558px;
+        }
+        #product_top{
+            border: 1px solid #FFFFFF;
+            width: 100%;
+            height: 45px;
+            padding-top: 8px;
+        }
+        #product_bottom{
+            border: 1px solid #FFFFFF;
+            width: 100%;
+            height: 500px;
+        }
+        #product_bottom_left{
+            border: 1px solid #FFFFFF;
+            width: 200px;
+            height: 500px;
+            float: left;
+        }
+        #product_bottom_right{
+            border: 1px solid #FFFFFF;
+            width: 1094px;
+            height: 500px;
+            float: left;
+        }
+        #big{
+            border: 1px solid #FFFFFF;
+            width: 544px;
+            height: 248px;
+            float: left;
+        }
+        .small{
+            border: 1px solid #000000;
+            width: 180px;
+            height: 248px;
+            float: left;
+            /*让里面的内容居中*/
+            text-align: center;
+        }
+
+        #bottom{
+            text-align: center;
+        }
+
+        a{
+            text-decoration: none;
+        }
+    </style>
+    <script src="加载/js/jquery.min.js"></script>
 </head>
 <body>
-<div id='app'>
-  <div>
-      <input type="text" v-model="keyword">
-      <input type="button" value="搜索" @click = "select(keyword)">
-  </div>
-    <div>
-        <table>
-            <tr>
-                <th>产品编号</th><th>产品名</th><th>产品原料产地</th><th>时间</th><th>评论</th>
-            </tr>
-            <tr v-for="production in productions" :key = "production.pid" v-if="isvisible">
-                <td>{{production.pid}}</td>
-                <td>{{production.name}}</td>
-                <td>{{production.material}}</td>
-                <td>{{production.date}}</td>
-                <td><a @click="getComments(production.pid)">详情</a></td>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <table>
-            <tr>
-                <td>xxx</td>
-                <td>时间xxxx--xx--xx--hh--mm--ss</td>
-            </tr>
-            <tr>
-                <td>评论内容：asdjasohoasfhoahs</td>
-            </tr>
-        </table>
-        <div v-if="commentView">
-            <table v-for = "comment in comments" >
-                <tr>
+<div id="father">
+    <!--1.logo部分-->
+    <div id="logo">
+        <div class="top">
+            <img src="加载/img/5066.jpg" height="46px" width="100%"/>
+        </div>
 
-                    <td>{{comment.account}}</td>
-                    <td>{{comment.date}}</td>
-                </tr>
-                <tr>
-                    <td>{{comment.comment}}</td>
-                </tr>
+        <div class="top" >
+            <img src="加载/img/257.ico" height="46px" />
 
-            </table>
-            <div>
-                <input type="text" v-model = "mycomment" />
-                <input type="button" value="发布评论" @click="sendComment(1,mycomment);getComments(1)" />
-            </div>
+        </div>
+        <div class="top"><img src="加载/img/logofooter.png" height="46px" /></div>
+        <div class="top" >某某购物商城</div>
+        <div id="ss1" style="display: none"> 欢迎，<span id="name"></span>&nbsp;&nbsp;&nbsp;
+            <a href="oneself">个人管理</a>&nbsp;&nbsp;&nbsp;<a href="/offLine">注销</a>
+        </div>
+        <div id="ss2" class="top"  >
+            <a href="loginC">用户登录</a>
+            <a href="registerC">用户注册</a>
+            <a href="加载/管理员登录界面.html">管理员请登录</a>
+
         </div>
 
     </div>
+    <div id="clear">
+
+    </div>
+    <!--2.导航栏部分-->
+    <div id="menu">
+        <ul>
+            <a href="#"><li style="font-size: 20px;">首页</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><li>手机数码</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><li>家用电器</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><li>鞋靴箱包</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><li>孕婴保健</li></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><li>奢侈品</li></a>
+        </ul>
+    </div>
+    <!--3.轮播图部分-->
+
+    <!--4.最新商品-->
+    <div >
+        <div >
+            &nbsp;&nbsp;&nbsp;
+            <span style="font-size: 25px;padding-top: 8px;">最新商品</span>&nbsp;&nbsp;&nbsp;
+
+        </div>
+        <div >
+            <div >
+                <img src="加载/img/t0125c016d40d004ee5.jpg" width="100%" height="100%"/>
+            </div>
+            <div id="product_bottom_right">
+                <div id="big">
+                    <a href="#"><img src="加载/img/t01bd13399aac6bde19.jpg" width="100%" height="100%"/></a>
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
 
 
+
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--5.广告图片-->
+
+    <!--6.热门商品-->
+    <div id="product">
+        <div id="product_top">
+            &nbsp;&nbsp;&nbsp;
+            <span style="font-size: 25px;padding-top: 8px;">热门商品</span>&nbsp;&nbsp;&nbsp;
+
+        </div>
+        <div id="product_bottom">
+            <div id="product_bottom_left">
+                <img src="加载/img/psd27539.jpg" width="100%" height="100%"/>
+            </div>
+            <div >
+
+                <div class="small">
+                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+                <div class="small">
+                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
+                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <p style="color: red;">¥399</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--8.友情链接和版权信息-->
+
+<div  style="height: 60px; bottom: 0;background-color: #B5B5B5;">
+    <div style="margin: 0 auto;width: auto;height: auto;text-align: center;">
+        <a href="#">关于我们</a>
+        <a href="#">联系我们</a>
+        <a href="#">招贤纳士</a>
+        <a href="#">法律声明</a>
+        <a href="#">友情链接</a>
+        <a href="#">支付方式</a>
+        <a href="#">配送方式</a>
+        <a href="#">服务声明</a>
+        <a href="#">广告声明</a>
+    </div>
 
 </div>
 </body>
-<script  src="/JS/index.js"></script>
+<script>
+    $($.ajax({
+        type:"get",// get或者post
+        url:"loginer",// 请求的url地址
+        dataType:"text",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+        success:function(data){ // 成功拿到结果放到这个函数 data就是拿到的结果
+            console.log("成功拿到结果放到这个函数");
+            if(data!=null&&data!==""){
+                console.log(data);
+                document.getElementById("ss1").style.display="block";
+                document.getElementById("ss2").style.display="none";
+                document.getElementById("name").innerText=data;
+            }
+        },
+        error:function(){//失败的函数
+            console.log("失败的函数")
+        },
+        complete:function(){//不管成功还是失败
+            console.log("不管成功还是失败")
+        }
+    }));
+
+</script>
 </html>

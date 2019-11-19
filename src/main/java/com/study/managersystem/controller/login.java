@@ -8,12 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 
 @Controller
-@RequestMapping("login")
-@SessionAttributes("loginer")
+//@SessionAttributes("loginer")
 public class login {
 
 
@@ -44,40 +44,45 @@ public class login {
 
 
     @RequestMapping("register")
-    @ResponseBody
-    public String register(String account,String password,String mobile){
+    public String register(String account,String password,String email,String phone,String address){
 
         Customer customer = new Customer();
         customer.setAccount(account);
         customer.setPassword(password);
-        customer.setMobile(mobile);
+        customer.setMobile(phone);
+        customer.setAddress(address);
+        customer.setEmail(email);
         customer.setDate(new Date());
 
         boolean register = customerService.register(customer);
         if(register){
-            return "success";
+            return "loginC";
         }
-        return "fail";
+        return "registerC";
     }
 
 
 
     @RequestMapping("login")
-    public String login(String account, String password, Model model){
+    public String login(String account, String password, HttpSession httpSession){
 
         Customer customer = new Customer();
-        customer.setAccount("zs");
-        customer.setPassword("123");
+        customer.setAccount(account);
+        customer.setPassword(password);
 
         boolean islogin = customerService.login(customer);
         if(islogin){
-            model.addAttribute("loginer",account);
+            //model.addAttribute("loginer",account);
+            httpSession.setAttribute("loginer",account);
             return "index";
         }else{
             return "login";
         }
 
     }
+
+    @RequestMapping("oneself")
+    public String  oneself(){return "houtai";}
 
     @RequestMapping("isExist")
     @ResponseBody
@@ -90,10 +95,18 @@ public class login {
 
     @RequestMapping("loginer")
     @ResponseBody
-    public String loginer(ModelMap modelMap){
-        String account = (String)modelMap.get("loginer");
+    public String loginer(HttpSession httpSession){
+        String account = (String)httpSession.getAttribute("loginer");
         return account;
     }
+
+    @RequestMapping("offLine")
+    public String offLine(HttpSession session){
+        session.removeAttribute("loginer");
+        return "index";
+    }
+
+
 
 
 }

@@ -1,5 +1,0 @@
-.loginForm{
-    margin: 0 auto; /*水平居中*/
-    position: relative; /*脱离文档流*/
-    top: 50%; /*偏移*/
-}

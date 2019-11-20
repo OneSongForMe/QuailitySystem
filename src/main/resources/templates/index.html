@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -154,49 +154,9 @@
                 <div id="big">
                     <a href="#"><img src="加载/img/t01bd13399aac6bde19.jpg" width="100%" height="100%"/></a>
                 </div>
-                <div class="small">
+                <div class="small" v-for="item in goods">
                     <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
+                    <a v-bind:href="'getgoods?pid='+item.pid"><p style="color: gray;" >{{item.name}}</p></a>
                     <p style="color: red;">¥399</p>
                 </div>
             </div>
@@ -214,63 +174,6 @@
         <div id="product_bottom">
             <div id="product_bottom_left">
                 <img src="加载/img/psd27539.jpg" width="100%" height="100%"/>
-            </div>
-            <div >
-                <div v-for="item in goods">
-                    <div class="small">
-                        <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-
-                        <a href="加载/商品信息界面.html"><p style="color: gray;">{{item.name}}</p></a>
-                        <p style="color: black;">产地：{{item.material}}</p>
-                        <p style="color: red;">¥399</p>
-                    </div>
-                </div>
-
-                <div class="small">
-                    <img src="加载/img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
-                <div class="small">
-                    <img src="img/t01782a1a55692baeee.jpg" width="180" height="150"/>
-                    <a href="加载/商品信息界面.html"><p style="color: gray;">某某手机</p></a>
-                    <p style="color: red;">¥399</p>
-                </div>
             </div>
         </div>
     </div>
@@ -315,6 +218,34 @@
             console.log("不管成功还是失败")
         }
     }));
+
+</script>
+
+<script>
+
+    Vue.filter('subDate',function(date){
+        var dt = new Date(date);
+        var y = dt.getFullYear();
+        var m = dt.getMonth()+1;
+        var d = dt.getDate();
+        return `${y}-${m}-${d}`
+    });
+
+    var vm=new Vue({
+        el:"#app",
+        data: {
+            goods:[{}]
+        },
+
+        created:function(){
+            var t=this;
+            axios.post('production/loadProduction')
+                .then(function (res) {
+                    t.goods=res.data;
+                });
+        }
+
+    });
 
 </script>
 </html>

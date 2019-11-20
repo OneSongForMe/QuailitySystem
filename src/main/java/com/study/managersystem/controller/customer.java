@@ -146,6 +146,49 @@ public class customer {
         return goods;
     }
 
+    @RequestMapping("getgoods")
+    public String getgoods(int pid ,HttpSession session){
+        Production production=new Production();
+        production=productionService.getone(pid);
+        session.setAttribute("goods",production);
+        return "buygoods";
+    }
+
+    @RequestMapping("gid")
+    @ResponseBody
+    public String getgoods(HttpSession session){
+        String result=null;
+        Production production=new Production();
+        production=(Production) session.getAttribute("goods");
+        String customer=(String)session.getAttribute("loginer");
+        if(customer!=null){
+            result=JSON.toJSONString(production);
+        }
+        return result;
+    }
+
+    @RequestMapping("buyG")
+    public String buygoods(HttpSession session,Production production){
+        System.out.println(production.getPid());
+        Good good=new Good();
+        String result=null;
+        String customer=(String)session.getAttribute("loginer");
+        if(customer!=null){
+            good.setCustomer(customer);
+            good.setDate(new Date());
+            good.setShoper(production.getShoper());
+            good.setProduction(production.getName());
+            result=goodService.insert(good);
+
+        }
+        if("success".equals(result)){
+            result="index";
+        }else{
+            result="getgoods?pid="+production.getPid();
+        }
+        return result;
+    }
+
 
 
 }

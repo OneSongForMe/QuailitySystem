@@ -20,6 +20,11 @@ public class ProductionServiceImpl {
         return productions;
     }
 
+    public Production getone(int pid){
+        Production production;
+        production=iProductionDao.getgood(pid);
+        return production;
+    }
     public List<Production> getmys(String name){
         List<Production> productions = iProductionDao.getmy(name);
         return productions;

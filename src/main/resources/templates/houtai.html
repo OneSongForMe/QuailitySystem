@@ -124,7 +124,7 @@
         <div id="item1"style="display: none;">
            <table id="t1" style="display: none">
            <tr><td>商品名称</td><td>下单日期</td><td>商家</td></tr>
-           <tr v-for="item in buydata">
+           <tr v-for="item in Cbuyer">
            <td>{{item.production}}</td>
            <td>{{item.date|subDate}}</td>
            <td>{{item.shoper}}</td>
@@ -247,6 +247,6 @@
     })
 
 </script>
-		
+<script src="加载/js/index.js"></script>
 	</body>
 </html>

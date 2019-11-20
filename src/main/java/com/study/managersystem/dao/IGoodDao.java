@@ -22,6 +22,9 @@ public interface IGoodDao {
     @Select("select * from good where shoper = #{shoper}")
     List<Good> selectByShoper(String shoper);
 
+    @Select("select * from good where customer = #{customer}")
+    List<Good> selectByCustomer(String customer);
+
     @Delete("delete * from good where gid = #{gid}")
     int delete(int gid);
 

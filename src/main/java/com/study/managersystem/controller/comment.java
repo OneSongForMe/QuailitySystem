@@ -104,7 +104,7 @@ public class comment{
             }
             path = file.getAbsolutePath();
         }
-        comment.setPicture(path);
+        comment.setPicture(multipartFile.getOriginalFilename());
         comment.setDate(new Date());
 
 
@@ -139,17 +139,17 @@ public class comment{
     @ResponseBody
     public String getPicture(String picture, HttpServletResponse response){
 
-
+        System.out.println(picture);
 
         int len;
         byte[] buf = new byte[1024];
 
-        System.out.println(picture);
-        File file = new File(picture);
+        File file = new File("D:\\Picture\\"+picture);
+        //D:\\Picture\\3ed39513b6215633e532732cb2d422d1.jpg
         if(file.exists()){
-            System.out.println("存在");
+            System.out.println("存在文件");
         }else{
-            System.out.println("不存在文件");
+            System.out.println("文件不存在");
         }
         try {
             FileInputStream inputStream = new FileInputStream(file);

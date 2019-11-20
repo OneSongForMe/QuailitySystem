@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 
@@ -64,7 +66,8 @@ public class login {
 
 
     @RequestMapping("login")
-    public String login(String account, String password, HttpSession httpSession){
+    public String login(String account, String password, HttpSession httpSession, HttpServletResponse response){
+
 
         Customer customer = new Customer();
         customer.setAccount(account);
@@ -74,6 +77,8 @@ public class login {
         if(islogin){
             //model.addAttribute("loginer",account);
             httpSession.setAttribute("loginer",account);
+            Cookie cookie = new Cookie("account",account);
+            response.addCookie(cookie);
             return "index";
         }else{
             return "login";

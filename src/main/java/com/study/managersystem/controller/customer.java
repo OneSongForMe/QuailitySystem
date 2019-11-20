@@ -137,7 +137,7 @@ public class customer {
         return goods;
     }
 
-    @RequestMapping("orderbycustomer")
+    @RequestMapping("orderbyC")
     @ResponseBody
     public List<Good> orderbycustomer(HttpSession session){
         List<Good> goods = null;

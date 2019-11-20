@@ -40,10 +40,10 @@ public class comment{
         return comments;
     }
 
-    @RequestMapping("selectByAccount")
+    @RequestMapping("customerCom")
     @ResponseBody
-    public List<Comment> selectByAccount(String account){
-
+    public List<Comment> selectByAccount(HttpSession session){
+        String account = (String)session.getAttribute("loginer");
         List<Comment> comments = commentService.selectByAccount(account);
         return comments;
     }

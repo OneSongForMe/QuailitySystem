@@ -139,11 +139,18 @@ public class comment{
     @ResponseBody
     public String getPicture(String picture, HttpServletResponse response){
 
+        System.out.println(picture);
 
         int len;
         byte[] buf = new byte[1024];
 
         File file = new File(picture);
+        //D:\\Picture\\3ed39513b6215633e532732cb2d422d1.jpg
+        if(file.exists()){
+            System.out.println("存在文件");
+        }else{
+            System.out.println("文件不存在");
+        }
         try {
             FileInputStream inputStream = new FileInputStream(file);
             BufferedInputStream bin = new BufferedInputStream(inputStream);

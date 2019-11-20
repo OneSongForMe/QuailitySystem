@@ -89,7 +89,7 @@ var vm=new Vue({
 				.then(function (res) {
 					t.accountC=res.data;
 					for( var i = 0; i < t.accountC.length; i++ ){
-						t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
+						//t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
 					}
 				});
 		},

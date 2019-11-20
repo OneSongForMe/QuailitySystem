@@ -121,7 +121,7 @@ public class comment{
         return result;
     }
 
-    @RequestMapping("delete")
+    @RequestMapping("duserdata")
     @ResponseBody
     public String delete(int coid){
 

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="加载/js/vue.min.js" ></script>
+    <script type="text/javascript" src="加载/js/axios.js" ></script>
+    <script type="text/javascript" src="加载/js/echarts.js"></script>
+    <script type="text/javascript" src="加载/js/jquery.min.js"></script>
+</head>
+<body>
+<div id="app">
+<form action="buyG" method="post">
+    <table>
+    <tr ><td style="display: none;"><input readonly="readonly"  name="pid" v-model="goods.pid"></td></tr>
+    <tr><td>商品名称</td><td><input name="name" readonly="readonly" v-model="goods.name" ></td></tr>
+    <tr><td>商品货源</td><td><input name="material" readonly="readonly" v-model="goods.material" ></td></tr>
+    <tr><td>商家名称</td><td><input name="shoper" readonly="readonly" v-model="goods.shoper" ></td></tr>
+    </table>
+    <input type="submit" value="确认购买">
+</form>
+</div>
+</body>
+<script>
+    Vue.filter('subDate',function(date){
+        var dt = new Date(date);
+        var y = dt.getFullYear();
+        var m = dt.getMonth()+1;
+        var d = dt.getDate();
+        return `${y}-${m}-${d}`
+    });
+
+    var vm=new Vue({
+        el:"#app",
+        data: {
+            goods:[]
+        },
+        created:function(){
+            var t=this;
+            axios.post('gid')
+                .then(function (res) {
+                    t.goods=res.data;
+                });
+        }
+
+    });
+</script>
+</html>

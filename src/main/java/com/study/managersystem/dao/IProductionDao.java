@@ -18,6 +18,10 @@ public interface IProductionDao {
     List<Production> loadProduction();
 
     //查询所有产品
+    @Select("select * from production where pid=#{pid}")
+    Production getgood(int pid);
+
+    //查询所有产品
     @Select("select * from production where shoper=#{name}")
     List<Production> getmy(String name);
 

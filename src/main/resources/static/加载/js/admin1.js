@@ -17,6 +17,7 @@ var vm=new Vue({
 		comment:[{}],
 		accountC:[{}],
 		bdata:[{}],
+		Cbuyer:[{}],
 		backdata:[{}],
 		odata:[{}],
 		forsee:[{}]
@@ -44,9 +45,13 @@ var vm=new Vue({
 			axios.get('orderbyshoper')
 				.then(function (res) {
 					t.buydata=res.data;
-					for( var i = 0; i < t.buydata.length; i++ ){
-						t.buydata[i].usedata = timestampToTime(t.buydata[i].usedata);
-					}
+				});
+		},
+		orderByC:function(){
+			var t=this;
+			axios.get('orderbyC')
+				.then(function (res) {
+					t.Cbuyer=res.data;
 				});
 		},
 
@@ -77,9 +82,6 @@ var vm=new Vue({
 			axios.get('selectByshoper')
 				.then(function (res) {
 					t.bdata=res.data;
-					for( var i = 0; i < t.bdata.length; i++ ){
-						t.bdata[i].usedata = timestampToTime(t.bdata[i].usedata);
-					}
 				});
 		},
 
@@ -89,7 +91,7 @@ var vm=new Vue({
 				.then(function (res) {
 					t.accountC=res.data;
 					for( var i = 0; i < t.accountC.length; i++ ){
-						//t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
+						t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
 					}
 				});
 		},

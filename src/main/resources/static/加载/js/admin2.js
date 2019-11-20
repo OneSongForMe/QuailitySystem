@@ -417,6 +417,9 @@ function useanalys1() {
 
 
 }
+function seeme() {
+	document.getElementById("see").style.display="block";
+}
 
 function showt2(){
 	document.getElementById("t2");

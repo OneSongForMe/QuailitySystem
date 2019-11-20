@@ -15,6 +15,7 @@ var vm=new Vue({
 		goods:[{}],
 		buydata:[{}],
 		comment:[{}],
+		accountC:[{}],
 		bdata:[{}],
 		backdata:[{}],
 		odata:[{}],
@@ -76,8 +77,19 @@ var vm=new Vue({
 			axios.get('selectByshoper')
 				.then(function (res) {
 					t.bdata=res.data;
-					for( var i = 0; i < t.bata.length; i++ ){
+					for( var i = 0; i < t.bdata.length; i++ ){
 						t.bdata[i].usedata = timestampToTime(t.bdata[i].usedata);
+					}
+				});
+		},
+
+		seecomment:function(){
+			var t=this;
+			axios.get('customerComm')
+				.then(function (res) {
+					t.accountC=res.data;
+					for( var i = 0; i < t.accountC.length; i++ ){
+						t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
 					}
 				});
 		},
@@ -87,9 +99,9 @@ var vm=new Vue({
 			axios.get('duserdata',
 				{params:{coid:item.coid}})
 				.then(function(res){
-					t.comment=res.data;
-					for( var i = 0; i < t.comment.length; i++ ){
-						t.comment[i].usedata = timestampToTime(t.comment[i].usedata);
+					t.accountC=res.data;
+					for( var i = 0; i < t.accountC.length; i++ ){
+						t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
 					}
 				})
 		},

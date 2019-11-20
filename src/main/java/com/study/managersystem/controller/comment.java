@@ -123,11 +123,14 @@ public class comment{
 
     @RequestMapping("duserdata")
     @ResponseBody
-    public String delete(int coid){
-
-
+    public List<Comment> delete(int coid, HttpSession session){
+        List<Comment> comments=null;
         String result = commentService.delete(coid);
-        return result;
+        if("success".equals(result)){
+            String account = (String)session.getAttribute("loginer");
+            comments = commentService.selectByAccount(account);
+        }
+        return comments;
     }
 
 

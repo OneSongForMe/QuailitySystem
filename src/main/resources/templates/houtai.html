@@ -150,8 +150,19 @@
               </table>
           </form>
             <button onclick="seeme()"><a v-on:click="seecomment()">查看我的反馈</a></button>
-            <div style="display: none;">
-
+            <div id="see" style="display: none;">
+                <table>
+                    <tr><td>商品编号</td><td>卖家</td><td>反馈评论</td><td>实物图</td><td>提交时间</td><td>删除</td></tr>
+                    <tr v-for="item in accountC">
+                        <td style="display: none">{{item.coid}}</td>
+                        <td>{{item.pid}}</td>
+                        <td>{{item.shoper}}</td>
+                        <td>{{item.comment}}</td>
+                        <td><img style="width: 200px;height: 200px;" v-bind:src="'getPicture?picture='+item.picture" ></img></td>
+                        <td>{{item.date|subDate}}</td>
+                        <td><button v-on:click="dusedata(item)">删除反馈</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div id="memberusedata" style="display: none">

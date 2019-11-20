@@ -68,21 +68,27 @@ public class login {
     @RequestMapping("login")
     public String login(String account, String password, HttpSession httpSession, HttpServletResponse response){
 
-
-        Customer customer = new Customer();
-        customer.setAccount(account);
-        customer.setPassword(password);
-
-        boolean islogin = customerService.login(customer);
-        if(islogin){
-            //model.addAttribute("loginer",account);
-            httpSession.setAttribute("loginer",account);
-            Cookie cookie = new Cookie("account",account);
-            response.addCookie(cookie);
+        if(httpSession.getAttribute("loginer")!=null){
             return "index";
+
         }else{
-            return "login";
+            Customer customer = new Customer();
+            customer.setAccount(account);
+            customer.setPassword(password);
+
+            boolean islogin = customerService.login(customer);
+            if(islogin){
+                //model.addAttribute("loginer",account);
+                httpSession.setAttribute("loginer",account);
+                Cookie cookie = new Cookie("account",account);
+                cookie.setMaxAge(10);
+                response.addCookie(cookie);
+                return "index";
+            }else{
+                return "login";
+            }
         }
+
 
     }
 

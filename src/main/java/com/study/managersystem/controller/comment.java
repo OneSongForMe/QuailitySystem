@@ -104,7 +104,7 @@ public class comment{
             }
             path = file.getAbsolutePath();
         }
-        comment.setPicture(path);
+        comment.setPicture(multipartFile.getOriginalFilename());
         comment.setDate(new Date());
 
 
@@ -144,7 +144,7 @@ public class comment{
         int len;
         byte[] buf = new byte[1024];
 
-        File file = new File(picture);
+        File file = new File("D:\\Picture\\"+picture);
         //D:\\Picture\\3ed39513b6215633e532732cb2d422d1.jpg
         if(file.exists()){
             System.out.println("存在文件");

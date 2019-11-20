@@ -2,7 +2,8 @@ server:
   port: 8080
   tomcat:
     uri-encoding: UTF-8
-    max-http-post-size: -1
+    max-http-post-size: 100MB
+  max-http-header-size: 4048576
 
 spring:
   http:

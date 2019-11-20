@@ -40,7 +40,7 @@ public class comment{
         return comments;
     }
 
-    @RequestMapping("customerCom")
+    @RequestMapping("customerComm")
     @ResponseBody
     public List<Comment> selectByAccount(HttpSession session){
         String account = (String)session.getAttribute("loginer");

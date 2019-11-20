@@ -77,7 +77,7 @@ var vm=new Vue({
 			axios.get('selectByshoper')
 				.then(function (res) {
 					t.bdata=res.data;
-					for( var i = 0; i < t.bata.length; i++ ){
+					for( var i = 0; i < t.bdata.length; i++ ){
 						t.bdata[i].usedata = timestampToTime(t.bdata[i].usedata);
 					}
 				});
@@ -87,7 +87,7 @@ var vm=new Vue({
 			var t=this;
 			axios.get('customerComm')
 				.then(function (res) {
-					t.accountC=res.accountC;
+					t.accountC=res.data;
 					for( var i = 0; i < t.accountC.length; i++ ){
 						t.accountC[i].usedata = timestampToTime(t.accountC[i].usedata);
 					}

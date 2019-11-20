@@ -4,9 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.study.managersystem.entity.Comment;
 import com.study.managersystem.entity.Customer;
+import com.study.managersystem.entity.Good;
 import com.study.managersystem.entity.Production;
 import com.study.managersystem.service.CommentServiceImpl;
 import com.study.managersystem.service.CustomerServiceImpl;
+import com.study.managersystem.service.GoodServiceImpl;
 import com.study.managersystem.service.ProductionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +31,9 @@ public class customer {
 
     @Autowired
     private CommentServiceImpl commentService;
+
+    @Autowired
+    private GoodServiceImpl goodService;
 
     @RequestMapping("loginC")
     public String  login(){return "login";}
@@ -121,6 +126,15 @@ public class customer {
        production.setShoper(shoper);
        result = productionService.insert(production);
         return result;
+    }
+
+    @RequestMapping("orderbyshoper")
+    @ResponseBody
+    public List<Good> orderbyshoper(HttpSession session){
+        List<Good> goods = null;
+        String shoper = (String)session.getAttribute("loginer");
+        goods =goodService.selectByShoper(shoper);
+        return goods;
     }
 
 

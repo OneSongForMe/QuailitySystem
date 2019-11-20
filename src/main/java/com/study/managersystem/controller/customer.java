@@ -84,7 +84,11 @@ public class customer {
         String account = (String)httpSession.getAttribute("loginer");
         Customer customer=new Customer();
         customer=customerService.isshoper(account);
-        int s=customer.getType();
+        int s=0;
+        if(customer!=null){
+            s=customer.getType();
+        }
+
         if(s==1){
             result="success";
         }

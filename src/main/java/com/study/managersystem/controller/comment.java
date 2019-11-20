@@ -140,10 +140,17 @@ public class comment{
     public String getPicture(String picture, HttpServletResponse response){
 
 
+
         int len;
         byte[] buf = new byte[1024];
 
+        System.out.println(picture);
         File file = new File(picture);
+        if(file.exists()){
+            System.out.println("存在");
+        }else{
+            System.out.println("不存在文件");
+        }
         try {
             FileInputStream inputStream = new FileInputStream(file);
             BufferedInputStream bin = new BufferedInputStream(inputStream);

@@ -137,6 +137,15 @@ public class customer {
         return goods;
     }
 
+    @RequestMapping("orderbycustomer")
+    @ResponseBody
+    public List<Good> orderbycustomer(HttpSession session){
+        List<Good> goods = null;
+        String shoper = (String)session.getAttribute("loginer");
+        goods =goodService.selectByCustomer(shoper);
+        return goods;
+    }
+
 
 
 }

@@ -41,6 +41,11 @@ public class GoodServiceImpl {
         return goods;
     }
 
+    public List<Good> selectByCustomer(String customer){
+        List<Good> goods = iGoodDao.selectByCustomer(customer);
+        return goods;
+    }
+
 
 
 }

@@ -17,7 +17,7 @@ public class GoodServiceImpl {
     public String insert (Good good){
         String result = null;
         int index = iGoodDao.insert(good.getProduction(),
-                good.getCustomer(),good.getShoper(),good.getDate());
+                good.getCustomer(),good.getShoper(),good.getDate(),good.getCount());
         if(index > 0){
             result = "success";
         }

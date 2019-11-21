@@ -15,9 +15,9 @@ import java.util.List;
 public interface IGoodDao {
 
     @Insert("insert into good " +
-            "(production,customer,shoper,date) " +
-            "value(#{production},#{customer},#{shoper},#{date})")
-    int insert(String production, String customer, String shoper, Date date);
+            "(production,customer,shoper,date,count) " +
+            "value(#{production},#{customer},#{shoper},#{date},#{count})")
+    int insert(String production, String customer, String shoper, Date date,int count);
 
     @Select("select * from good where shoper = #{shoper}")
     List<Good> selectByShoper(String shoper);

@@ -10,6 +10,16 @@ public class Good implements Serializable {
     private String shoper;
     private Date date;
 
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    private int count;
+
     public int getGid() {
         return gid;
     }
@@ -58,6 +68,7 @@ public class Good implements Serializable {
                 ", customer='" + customer + '\'' +
                 ", shoper='" + shoper + '\'' +
                 ", date=" + date +
+                ", count=" + count +
                 '}';
     }
 }

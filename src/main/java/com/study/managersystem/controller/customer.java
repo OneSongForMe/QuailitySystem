@@ -172,7 +172,7 @@ public class customer {
     }
 
     @RequestMapping("buyG")
-    public String buygoods(HttpSession session,Production production){
+    public String buygoods(HttpSession session,Production production,int count){
         System.out.println(production.getPid());
         Good good=new Good();
         String result=null;
@@ -182,6 +182,7 @@ public class customer {
             good.setDate(new Date());
             good.setShoper(production.getShoper());
             good.setProduction(production.getName());
+            good.setCount(count);
             result=goodService.insert(good);
 
         }

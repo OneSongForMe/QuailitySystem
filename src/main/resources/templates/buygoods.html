@@ -16,6 +16,9 @@
     <tr><td>商品名称</td><td><input name="name" readonly="readonly" v-model="goods.name" ></td></tr>
     <tr><td>商品货源</td><td><input name="material" readonly="readonly" v-model="goods.material" ></td></tr>
     <tr><td>商家名称</td><td><input name="shoper" readonly="readonly"  v-model="goods.shoper" ></td></tr>
+        <tr><td>购买数量</td><td> <button v-on:click.prevent="reduce()">减少</button>{{count}} <button v-on:click.prevent="add()">增加</button></td></tr>
+
+        <input name="count" style="display: none;" v-model="count" />
     </table>
     <input type="submit" value="确认购买">
 </form>
@@ -33,7 +36,8 @@
     var vm=new Vue({
         el:"#app",
         data: {
-            goods:[]
+            goods:[],
+            count:1
         },
         created:function(){
             var t=this;
@@ -41,7 +45,21 @@
                 .then(function (res) {
                     t.goods=res.data;
                 });
+        },
+        methods :{
+            reduce:function () {
+                var t=this;
+                if(t.count>1){
+                    t.count --;
+                }
+
+            },
+            add:function () {
+                var t=this;
+                t.count ++;
+            }
         }
+
 
     });
 </script>

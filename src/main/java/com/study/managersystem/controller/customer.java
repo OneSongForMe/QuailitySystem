@@ -52,6 +52,14 @@ public class customer {
         return s;
     }
 
+    @RequestMapping("findbyname")
+    @ResponseBody
+    public String check(String name){
+        String s=null;
+        s=customerService.isExist(name);
+        return s;
+    }
+
     @RequestMapping("editself")
     public String editself( Customer customer){
         System.out.println(customer);

@@ -124,19 +124,21 @@
         </div>
         <div id="item1"style="display: none;">
            <table id="t1" style="display: none">
-           <tr><td>商品名称</td><td>下单日期</td><td>商家</td></tr>
+           <tr><td>商品名称</td><td>下单日期</td><td>商家</td><td>数量</td></tr>
            <tr v-for="item in Cbuyer">
            <td>{{item.production}}</td>
            <td>{{item.date|subDate}}</td>
            <td>{{item.shoper}}</td>
+               <td>{{item.count}}</td>
            </tr>
            </table>
             <table id="t2" style="display: none">
-                <tr><td>商品名称</td><td>下单日期</td><td>买家</td></tr>
+                <tr><td>商品名称</td><td>下单日期</td><td>买家</td><td>数量</td></tr>
                 <tr v-for="item in buydata">
                     <td>{{item.production}}</td>
                     <td>{{item.date|subDate}}</td>
                     <td>{{item.customer}}</td>
+                    <td>{{item.count}}</td>
                 </tr>
             </table>
         </div>

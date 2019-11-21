@@ -6,7 +6,18 @@ var emaile_Boolean = false;
 var Mobile_Boolean = false;
 var address=false;
 $('.reg_user').blur(function(){
-  if ((/^[a-z0-9_-]{4,8}$/).test($(".reg_user").val())){
+  var res=null;
+  var name=$(".reg_user").val();
+  $.ajax({
+    type: "get",// get或者post
+    url: "findbyname?name="+name,// 请求的url地址
+    dataType: "text",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+    success: function (data) { // 成功拿到结果放到这个函数 data就是拿到的结果
+      res=data;
+    }
+  });
+
+  if ((/^[a-z0-9_-]{4,8}$/).test($(".reg_user").val())&&res!=null&&res!=="is not isExist"){
     $('.user_hint').html("✔").css("color","green");
     user_Boolean = true;
   }else {

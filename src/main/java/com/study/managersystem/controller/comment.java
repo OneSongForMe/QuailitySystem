@@ -48,7 +48,7 @@ public class comment{
         return comments;
     }
 
-    @RequestMapping("selectByProduction")
+    @RequestMapping("selectxByProduction")
     @ResponseBody
     public List<Comment> selectByProduction(int pid){
 

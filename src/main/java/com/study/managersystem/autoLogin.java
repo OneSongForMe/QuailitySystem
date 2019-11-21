@@ -16,13 +16,13 @@ public class autoLogin implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
         HttpServletResponse response = (HttpServletResponse)servletResponse;
-        Cookie[] cookies = request.getCookies();
-        boolean hasLogin = false;
-        if(cookies!= null){
-            for (Cookie cookie : cookies) {
-                if(cookie.getName().equals("account")){
+        Cookie[] cookies = request.getCookies();//从浏览器上获取cookie缓存信息
+        boolean hasLogin = false;//定义一个判断是否还在允许自动登录的时间内
+        if(cookies!= null){//拿到的cookie不为空
+            for (Cookie cookie : cookies) {//
+                if(cookie.getName().equals("account")){//查找是否存在名字为“account”的缓存信息，如果有，就说明在自动登录的有效期里
                     System.out.println("自动登录");
-                    request.getSession().setAttribute("loginer",cookie.getValue());
+                    request.getSession().setAttribute("loginer",cookie.getValue());//把获取的缓存信息中的登录信息存储在session上，名字为“loginer”
                     System.out.println(cookie.getValue());
                     hasLogin = true;
                     break;
@@ -30,8 +30,8 @@ public class autoLogin implements Filter {
             }
         }
         System.out.println("filter生效");
-        if(hasLogin){
-            request.getRequestDispatcher("login").forward(request,response);
+        if(hasLogin){//是否还在允许自动登录的时间内
+            request.getRequestDispatcher("login").forward(request,response);//跳转到登录模块
         }else{
             filterChain.doFilter(request,response);
         }

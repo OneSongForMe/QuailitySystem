@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Customer implements Serializable {
     private int cid;
-    private String account;
-    private String password;
-    private String email;
-    private String mobile;
-    private String address;
-    private int type;
+    private String account;//用户名
+    private String password;//密码
+    private String email;//邮箱
+    private String mobile;//手机号
+    private String address;//地址
+    private int type;//是不是商家
 
     public int getType() {
         return type;

@@ -26,34 +26,37 @@ public class CustomerServiceImpl {
 
     public boolean login(Customer customer){
 
-        String account = customer.getAccount();
-        String password = customer.getPassword();
+        String account = customer.getAccount();//用户名
+        String password = customer.getPassword();//密码
 
-        Customer anotherCustomer = iCustomerDao.isExist(account);
+        Customer anotherCustomer = iCustomerDao.isExist(account);//检测用户名存在数据库中
 
-        if(customer!=null&&anotherCustomer!=null){
-            if (password.equals(anotherCustomer.getPassword())){
+        if(customer!=null&&anotherCustomer!=null){//存在，返回数据库中的用户对象
+            if (password.equals(anotherCustomer.getPassword())){//传入的密码是否与数据库中密码一致
                 return true;
             }
         }
         return false;
     }
 
-    public boolean register(Customer customer){
-        String account = customer.getAccount();
-        String password = customer.getPassword();
-        String mobile = customer.getMobile();
-        Date date = customer.getDate();
+    public boolean register(Customer customer){//注册
+        String account = customer.getAccount();//用户名
+        String password = customer.getPassword();//密码
+        String mobile = customer.getMobile();//手机号
+        Date date = customer.getDate();//注册时间
 
         int index = -1;
 
-        Customer anotherCustomer = iCustomerDao.isExist(account);
-        if(customer!=null){
-            index = iCustomerDao.add(account,password,mobile,customer.getAddress(),customer.getEmail(),date);
-            if(index > 0){
-                return true;
+        Customer anotherCustomer = iCustomerDao.isExist(account);//检测这个用户名是否已存在数据库中
+        if(anotherCustomer == null){//数据库中不存在这个用户名的记录，所以可以注册
+            if(customer!=null){
+                index = iCustomerDao.add(account,password,mobile,customer.getAddress(),customer.getEmail(),date);//插入成功返回1，否则返回-1
+                if(index > 0){//插入成功
+                    return true;
+                }
             }
         }
+
         return false;
     }
 
